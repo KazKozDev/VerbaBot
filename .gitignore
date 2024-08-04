@@ -1,0 +1,31 @@
+# Database
+assistant.db
+
+# Sensitive information
+client_secret.json
+
+# Python virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files (если вы используете какую-либо IDE)
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Временные файлы
+*.tmp
+
+# Файлы с локальными настройками (если такие есть)
+local_settings.py

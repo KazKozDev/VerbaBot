@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerbaBot</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #343541;
+            color: #ececf1;
+        }
+        #app {
+            display: flex;
+            height: 100%;
+            font-size: 16px;
+        }
+        #sidebar {
+            width: 400px;
+            background-color: #202123;
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #sidebar::-webkit-scrollbar {
+            display: none;
+        }
+        #main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 420px;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #chat-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            max-width: 80%;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            line-height: 1.4;
+            position: relative;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+        .message p {
+            margin: 0 0 0.5em 0;
+        }
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+        .message > *:first-child {
+            margin-top: 0;
+        }
+        .message > :last-child {
+            margin-bottom: 0;
+        }
+        .message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .message ul, .message ol {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            padding-left: 1.5em;
+        }
+        .message li {
+            margin-bottom: 0.25em;
+        }
+        .message pre {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .message code {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .user-message {
+            background-color: #40414f;
+            align-self: flex-end;
+            color: #d1d1d1;
+            padding-right: 40px;
+        }
+        .bot-message {
+            background-color: #444654;
+            align-self: flex-start;
+            padding-right: 40px;
+        }
+        .message-actions {
+            display: none;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .message:hover .message-actions {
+            display: block;
+        }
+        #input-area {
+            display: flex;
+            padding: 15px 20px 20px;
+            background-color: #40414f;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #input-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #565869;
+            border-radius: 5px;
+            background-color: #40414f;
+            color: #ececf1;
+            font-size: 1em;
+        }
+        #send-button, #file-upload-button, .font-size-button {
+            padding: 10px 20px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        #send-button:hover, #file-upload-button:hover, .font-size-button:hover {
+            background-color: #6e7081;
+        }
+        #file-upload {
+            display: none;
+        }
+        #new-chat-button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #2a2b32;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+        }
+        #new-chat-button:hover {
+            background-color: #3a3b42;
+        }
+        .chat-history-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #2a2b32;
+            border-radius: 5px;
+            cursor: move;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-history-item:hover {
+            background-color: #3a3b42;
+        }
+        .chat-history-item.active {
+            background-color: #4a4b52;
+        }
+        .chat-title {
+            flex-grow: 1;
+            margin: 0 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+        }
+        .pin-button, .delete-button, .rename-button {
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+            color: #ececf1;
+            font-size: 1.2em;
+        }
+        .rename-button {
+            margin-left: 5px;
+        }
+        .pinned {
+            order: -1;
+        }
+        #search-options {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-top: 5px;
+        }
+        #search-options label {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        #search-options input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        #search-options label:first-child {
+            margin-left: 15px;
+        }
+        #font-size-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .rename-input {
+            background-color: #40414f;
+            color: #ececf1;
+            border: 1px solid #565869;
+            border-radius: 3px;
+            padding: 2px 5px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        #settings-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2a2b32;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+        }
+        #settings-button:hover {
+            background-color: #3a3b42;
+        }
+        #settings-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        #settings-modal .modal-content {
+            background-color: #2a2b32;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #settings-modal .settings-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #40414f;
+            color: #ececf1;
+            border: 1px solid #565869;
+            border-radius: 5px;
+        }
+        .settings-label {
+            display: block;
+            margin-top: 15px;
+            color: #ececf1;
+        }
+        #save-settings {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #save-settings:hover {
+            background-color: #6e7081;
+        }
+        #settings-modal #system-prompt {
+            height: 100px;
+            resize: vertical;
+        }
+        .search-section {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2a2b32;
+            border-radius: 5px;
+        }
+        .search-item {
+            margin-bottom: 10px;
+        }
+        .search-item a {
+            color: #61dafb;
+            text-decoration: none;
+        }
+        .search-item a:hover {
+            text-decoration: underline;
+        }
+        .uploaded-file {
+            max-width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #2a2b32;
+            border-radius: 5px;
+        }
+        .uploaded-file img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        .uploaded-file audio, .uploaded-file video {
+            max-width: 100%;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .file-icon {
+            font-size: 48px;
+            margin-right: 10px;
+        }
+        .file-info {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <button id="new-chat-button">New Chat</button>
+            <div id="chat-history-list"></div>
+            <button id="settings-button">Settings</button>
+        </div>
+        <div id="main-content">
+            <div id="font-size-controls">
+                <button class="font-size-button" id="decrease-font">A-</button>
+                <button class="font-size-button" id="increase-font">A+</button>
+            </div>
+            <div id="chat-container"></div>
+            <div id="input-area">
+                <div id="search-options">
+                    <label>
+                        <input type="checkbox" id="use-duckduckgo">
+                        Search
+                    </label>
+                    <label>
+                        <input type="checkbox" id="use-google-news">
+                        News
+                    </label>
+                    <label>
+                        <input type="checkbox" id="use-link">
+                        Link
+                    </label>
+                </div>
+                <div id="input-container">
+                    <button id="file-upload-button">📎</button>
+                    <input type="text" id="user-input" placeholder="Send a message...">
+                    <button id="send-button">Send</button>
+                </div>
+                <input type="file" id="file-upload" accept="image/*,text/*,.pdf,.xlsx,.xls,.docx,.csv,audio/*,video/*">
+            </div>
+        </div>
+    </div>
+    <div id="settings-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="llm-model" class="settings-label">LLM Model Name:</label>
+            <input type="text" id="llm-model" class="settings-input" placeholder="Enter LLM model name">
+            <label for="image-recognition-model" class="settings-label">Image Recognition Model Name:</label>
+            <input type="text" id="image-recognition-model" class="settings-input" placeholder="Enter image recognition model name">
+            <label for="system-prompt" class="settings-label">System Prompt:</label>
+            <textarea id="system-prompt" class="settings-input" rows="5" placeholder="Enter system prompt"></textarea>
+            <button id="save-settings">Save Settings</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const fileUpload = document.getElementById('file-upload');
+        const sendButton = document.getElementById('send-button');
+        const fileUploadButton = document.getElementById('file-upload-button');
+        const newChatButton = document.getElementById('new-chat-button');
+        const chatHistoryList = document.getElementById('chat-history-list');
+        const decreaseFontButton = document.getElementById('decrease-font');
+        const increaseFontButton = document.getElementById('increase-font');
+        const settingsButton = document.getElementById('settings-button');
+        const settingsModal = document.getElementById('settings-modal');
+        const closeButton = document.querySelector('.close');
+        const saveSettingsButton = document.getElementById('save-settings');
+        const llmModelInput = document.getElementById('llm-model');
+        const imageRecognitionModelInput = document.getElementById('image-recognition-model');
+        const systemPromptInput = document.getElementById('system-prompt');
+        const useLinkCheckbox = document.getElementById('use-link');
+        
+        let currentChatId = null;
+        let llmModel = localStorage.getItem('llmModel') || 'mistral-nemo:latest';
+        let imageRecognitionModel = localStorage.getItem('imageRecognitionModel') || 'llava:13b';
+        let systemPrompt = localStorage.getItem('systemPrompt') || 'From this point on, write a concise response that contains complete and useful information on the topic of the question. Do not repeat the user\'s query in one way or another in your answers.';
+        
+        llmModelInput.value = llmModel;
+        imageRecognitionModelInput.value = imageRecognitionModel;
+        systemPromptInput.value = systemPrompt;
+        
+        let currentFontSize = localStorage.getItem('fontSize') || 16;
+        document.getElementById('app').style.fontSize = `${currentFontSize}px`;
+        
+        function changeFontSize(delta) {
+            currentFontSize = Math.max(12, Math.min(24, parseInt(currentFontSize) + delta));
+            document.getElementById('app').style.fontSize = `${currentFontSize}px`;
+            localStorage.setItem('fontSize', currentFontSize);
+        }
+        
+        function addMessage(message, isUser, messageId) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            if (typeof message === 'string') {
+                let contentHtml = DOMPurify.sanitize(marked.parse(message));
+                contentHtml = contentHtml.replace(/<\/p><br><p>/g, '</p><p>');
+                
+                if (!isUser) {
+                    const searchTypes = [
+                        {type: 'DuckDuckGo search results', className: 'duckduckgo-results'},
+                        {type: 'original news articles', className: 'news-results'}
+                    ];
+                    
+                    for (const searchType of searchTypes) {
+                        if (message.includes(`Here are the ${searchType.type} I based my`)) {
+                            const [mainContent, resultsSection] = message.split(`Here are the ${searchType.type} I based my`);
+                            contentHtml = DOMPurify.sanitize(marked.parse(mainContent)) + 
+                            `<div class="search-section ${searchType.className}"><h4>${searchType.type}:</h4>`;
+                            
+                            const resultItems = resultsSection.match(/- (.+)\n  (https?:\/\/\S+)/g);
+                            if (resultItems) {
+                                resultItems.forEach(item => {
+                                    const [_, title, url] = item.match(/- (.+)\n  (https?:\/\/\S+)/);
+                                    contentHtml += `<div class="search-item"><a href="${url}" target="_blank">${title}</a></div>`;
+                                });
+                            }
+                            contentHtml += '</div>';
+                            break;
+                        }
+                    }
+                }
+                messageDiv.innerHTML = contentHtml;
+            } else {
+                messageDiv.appendChild(message);
+            }
+            
+            const actionsSpan = document.createElement('span');
+            actionsSpan.className = 'message-actions';
+            actionsSpan.innerHTML = `<button onclick="deleteMessage(${messageId})">✖</button>`;
+            messageDiv.appendChild(actionsSpan);
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        async function deleteMessage(messageId) {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/delete_message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message_id: messageId }),
+                });
+                const data = await response.json();
+                if (data.success) {
+                    document.querySelector(`.message button[onclick="deleteMessage(${messageId})"]`).closest('.message').remove();
+                } else if (data.error) {
+                    console.error('Error deleting message:', data.error);
+                }
+            } catch (error) {
+                console.error('Error deleting message:', error);
+            }
+        }
+        
+        async function renameChat(chatId) {
+            const chatItem = document.querySelector(`.chat-history-item[data-id="${chatId}"]`);
+            const titleSpan = chatItem.querySelector('.chat-title');
+            const currentTitle = titleSpan.textContent;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentTitle;
+            input.className = 'rename-input';
+            input.onblur = async function() {
+                const newTitle = input.value.trim();
+                if (newTitle && newTitle !== currentTitle) {
+                    try {
+                        const response = await fetch('http://127.0.0.1:5000/rename_chat', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ chat_id: chatId, new_title: newTitle }),
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                            titleSpan.textContent = newTitle;
+                            titleSpan.title = newTitle;
+                            chatItem.dataset.manuallyRenamed = 'true';
+                        } else if (data.error) {
+                            console.error('Error renaming chat:', data.error);
+                        }
+                    } catch (error) {
+                        console.error('Error renaming chat:', error);
+                    }
+                }
+                titleSpan.style.display = '';
+                input.remove();
+            };
+            titleSpan.style.display = 'none';
+            chatItem.insertBefore(input, titleSpan);
+            input.focus();
+        }
+        
+        let isProcessing = false;
+        
+        async function sendMessage() {
+            if (isProcessing) return;
+            const message = userInput.value.trim();
+            if (message === '') return;
+            
+            const useDuckDuckGo = document.getElementById('use-duckduckgo').checked;
+            const useGoogleNews = document.getElementById('use-google-news').checked;
+            const useLink = useLinkCheckbox.checked;
+            
+            isProcessing = true;
+            sendButton.disabled = true;
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'loading';
+            chatContainer.appendChild(loadingIndicator);
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        chat_id: currentChatId,
+                        use_duckduckgo: useDuckDuckGo,
+                        use_google_news: useGoogleNews,
+                        use_link: useLink,
+                        llm_model: llmModel,
+                        system_prompt: systemPrompt
+                    }),
+                });
+                const data = await response.json();
+                addMessage(message, true, data.user_message_id);
+                addMessage(data.response, false, data.assistant_message_id);
+                if (data.chat_id) {
+                    currentChatId = data.chat_id;
+                    await updateChatHistory();
+                }
+                if (data.chat_title) {
+                    updateChatTitle(currentChatId, data.chat_title);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, there was an error processing your request.', false, null);
+            } finally {
+                loadingIndicator.remove();
+                userInput.value = '';
+                isProcessing = false;
+                sendButton.disabled = false;
+            }
+        }
+        
+        async function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('chat_id', currentChatId);
+            
+            let filePreview;
+            if (file.type.startsWith('image/')) {
+                filePreview = await createImagePreview(file);
+            } else if (file.type === 'application/pdf') {
+                filePreview = createPDFPreview(file);
+            } else if (file.type.startsWith('audio/')) {
+                filePreview = createAudioPreview(file);
+            } else if (file.type.startsWith('video/')) {
+                filePreview = createVideoPreview(file);
+            } else {
+                filePreview = createGenericFilePreview(file);
+            }
+            
+            addMessage(filePreview, true, null);
+            
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'loading';
+            chatContainer.appendChild(loadingIndicator);
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                if (data.error) {
+                    addMessage(`Error: ${data.error}`, false, null);
+                } else {
+                    addMessage(`File content:\n\n${data.file_content}`, true, data.user_message_id);
+                    addMessage(data.llm_comment, false, data.assistant_message_id);
+                    if (data.chat_id) {
+                        currentChatId = data.chat_id;
+                        await updateChatHistory();
+                    }
+                    if (data.chat_title) {
+                        updateChatTitle(currentChatId, data.chat_title);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, there was an error uploading your file.', false, null);
+            } finally {
+                loadingIndicator.remove();
+            }
+        }
+        
+        function createImagePreview(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '300px';
+                    img.style.maxHeight = '300px';
+                    const container = document.createElement('div');
+                    container.className = 'uploaded-file';
+                    container.appendChild(img);
+                    resolve(container);
+                }
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function createPDFPreview(file) {
+            const pdfViewer = document.createElement('iframe');
+            pdfViewer.className = 'pdf-viewer';
+            pdfViewer.src = URL.createObjectURL(file);
+            const container = document.createElement('div');
+            container.className = 'uploaded-file';
+            container.appendChild(pdfViewer);
+            return container;
+        }
+        
+        function createAudioPreview(file) {
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.src = URL.createObjectURL(file);
+            const container = document.createElement('div');
+            container.className = 'uploaded-file';
+            container.appendChild(audio);
+            return container;
+        }
+        
+        function createVideoPreview(file) {
+            const video = document.createElement('video');
+            video.controls = true;
+            video.style.maxWidth = '100%';
+            video.style.maxHeight = '300px';
+            video.src = URL.createObjectURL(file);
+            const container = document.createElement('div');
+            container.className = 'uploaded-file';
+            container.appendChild(video);
+            return container;
+        }
+        
+        function createGenericFilePreview(file) {
+            const container = document.createElement('div');
+            container.className = 'uploaded-file';
+            const fileInfo = document.createElement('div');
+            fileInfo.className = 'file-info';
+            
+            let fileIcon = '📄';
+            if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+                fileIcon = '📊';
+            } else if (file.name.endsWith('.docx')) {
+                fileIcon = '📝';
+            } else if (file.name.endsWith('.csv')) {
+                fileIcon = '📈';
+            }
+            
+            fileInfo.innerHTML = `
+                <span class="file-icon">${fileIcon}</span>
+                <span>${file.name} (${formatFileSize(file.size)})</span>
+            `;
+            container.appendChild(fileInfo);
+            return container;
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + ' KB';
+            else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + ' MB';
+            else return (bytes / 1073741824).toFixed(2) + ' GB';
+        }
+        
+        async function updateChatHistory() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat_history');
+                const data = await response.json();
+                chatHistoryList.innerHTML = '';
+                data.chats.forEach(chat => {
+                    const chatItem = document.createElement('div');
+                    chatItem.className = `chat-history-item ${chat.pinned ? 'pinned' : ''}`;
+                    chatItem.dataset.id = chat.id;
+                    chatItem.dataset.manuallyRenamed = chat.manually_renamed;
+                    if (chat.id === currentChatId) {
+                        chatItem.classList.add('active');
+                    }
+                    
+                    const pinButton = document.createElement('button');
+                    pinButton.className = 'pin-button';
+                    pinButton.textContent = chat.pinned ? '📍' : '➖';
+                    pinButton.onclick = (e) => {
+                        e.stopPropagation();
+                        togglePin(chat.id);
+                    };
+                    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'delete-button';
+                    deleteButton.textContent = '╳';
+                    deleteButton.onclick = (e) => {
+                        e.stopPropagation();
+                        deleteChat(chat.id);
+                    };
+                    
+                    const chatTitle = document.createElement('span');
+                    chatTitle.className = 'chat-title';
+                    chatTitle.textContent = chat.title || `Chat ${chat.id}`;
+                    chatTitle.title = chat.title || `Chat ${chat.id}`;
+                    chatTitle.onclick = () => loadChat(chat.id);
+                    
+                    const renameButton = document.createElement('button');
+                    renameButton.className = 'rename-button';
+                    renameButton.textContent = 'I';
+                    renameButton.onclick = (e) => {
+                        e.stopPropagation();
+                        renameChat(chat.id);
+                    };
+                    
+                    chatItem.appendChild(pinButton);
+                    chatItem.appendChild(deleteButton);
+                    chatItem.appendChild(chatTitle);
+                    chatItem.appendChild(renameButton);
+                    chatHistoryList.appendChild(chatItem);
+                });
+                
+                new Sortable(chatHistoryList, {
+                    animation: 150,
+                    onEnd: function (evt) {
+                        const newOrder = Array.from(chatHistoryList.children).map(item => item.dataset.id);
+                        updateChatOrder(newOrder);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching chat history:', error);
+            }
+        }
+        
+        async function deleteChat(chatId) {
+            if (confirm('Are you sure you want to delete this chat?')) {
+                try {
+                    const response = await fetch(`http://127.0.0.1:5000/delete_chat/${chatId}`, {
+                        method: 'DELETE',
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        await updateChatHistory();
+                        if (currentChatId === chatId) {
+                            newChat();
+                        }
+                    } else if (data.error) {
+                        console.error('Error deleting chat:', data.error);
+                    }
+                } catch (error) {
+                    console.error('Error deleting chat:', error);
+                }
+            }
+        }
+        
+        async function updateChatOrder(newOrder) {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/reorder_chats', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ new_order: newOrder }),
+                });
+                const data = await response.json();
+                if (data.error) {
+                    console.error('Error updating chat order:', data.error);
+                }
+            } catch (error) {
+                console.error('Error updating chat order:', error);
+            }
+        }
+        
+        async function togglePin(chatId) {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/toggle_pin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ chat_id: chatId }),
+                });
+                const data = await response.json();
+                if (data.success) {
+                    await updateChatHistory();
+                } else if (data.error) {
+                    console.error('Error toggling pin:', data.error);
+                }
+            } catch (error) {
+                console.error('Error toggling pin:', error);
+            }
+        }
+        
+        async function loadChat(chatId) {
+            currentChatId = chatId;
+            chatContainer.innerHTML = '';
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/chat/${chatId}`);
+                const data = await response.json();
+                data.messages.forEach(msg => {
+                    addMessage(msg.content, msg.is_user, msg.id);
+                });
+                updateChatHistory();
+            } catch (error) {
+                console.error('Error loading chat:', error);
+            }
+        }
+        
+        function newChat() {
+            currentChatId = null;
+            chatContainer.innerHTML = '';
+            userInput.value = '';
+            updateChatHistory();
+        }
+        
+        function updateChatTitle(chatId, newTitle) {
+            const chatItems = document.querySelectorAll('.chat-history-item');
+            chatItems.forEach(item => {
+                if (item.dataset.id === chatId.toString() && item.dataset.manuallyRenamed !== 'true') {
+                    const titleSpan = item.querySelector('.chat-title');
+                    if (titleSpan) {
+                        titleSpan.textContent = newTitle;
+                        titleSpan.title = newTitle;
+                    }
+                }
+            });
+        }
+        
+        // Event Listeners
+        decreaseFontButton.addEventListener('click', () => changeFontSize(-2));
+        increaseFontButton.addEventListener('click', () => changeFontSize(2));
+        
+        settingsButton.onclick = function() {
+            settingsModal.style.display = "block";
+        }
+        
+        closeButton.onclick = function() {
+            settingsModal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == settingsModal) {
+                settingsModal.style.display = "none";
+            }
+        }
+        
+        saveSettingsButton.onclick = async function() {
+            llmModel = llmModelInput.value;
+            imageRecognitionModel = imageRecognitionModelInput.value;
+            systemPrompt = systemPromptInput.value;
+            localStorage.setItem('llmModel', llmModel);
+            localStorage.setItem('imageRecognitionModel', imageRecognitionModel);
+            localStorage.setItem('systemPrompt', systemPrompt);
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/update_settings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        image_model: imageRecognitionModel,
+                        llm_model: llmModel,
+                        system_prompt: systemPrompt
+                    }),
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert('Settings updated successfully');
+                } else {
+                    alert('Error updating settings: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error updating settings:', error);
+                alert('Error updating settings');
+            }
+            settingsModal.style.display = "none";
+        }
+        
+        fileUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                uploadFile(file);
+            }
+        });
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        sendButton.addEventListener('click', sendMessage);
+        fileUploadButton.addEventListener('click', () => fileUpload.click());
+        newChatButton.addEventListener('click', newChat);
+        
+        // Initial setup
+        updateChatHistory();
+    </script>
+</body>
+</html>
