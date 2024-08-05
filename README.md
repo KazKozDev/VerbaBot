@@ -31,8 +31,8 @@ ollama pull llava:13b
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/ai-assistant-chat.git
-   cd ai-assistant-chat
+   git clone https://github.com/KazKozDev/VerbaBot.git
+   cd VerbaBot
    ```
 
 2. Install the required dependencies:
