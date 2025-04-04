@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavy Lines Loading Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #343541;
+            overflow: hidden;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .wavy-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wavy-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(203, 62, 242, 0.5));
+        }
+        
+        .path-1, .path-2, .path-3, .path-4 {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .path-1 {
+            stroke: #5B42F3;
+            animation: pathAnimate 2s ease-in-out infinite alternate, 
+                       colorChange1 3s ease-in-out infinite;
+        }
+        
+        .path-2 {
+            stroke: #7A5AF8;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: pathAnimate 2.5s ease-in-out infinite alternate, 
+                       pathDash 4s ease-in-out infinite,
+                       colorChange2 3s ease-in-out infinite;
+        }
+        
+        .path-3 {
+            stroke: #A23FF4;
+            animation: pathAnimate 3s ease-in-out infinite alternate,
+                       colorChange3 3s ease-in-out infinite;
+        }
+        
+        .path-4 {
+            stroke: #C83EF2;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: pathAnimate 3.5s ease-in-out infinite alternate,
+                       pathDash 4.5s ease-in-out infinite reverse,
+                       colorChange4 3s ease-in-out infinite;
+        }
+        
+        @keyframes pathAnimate {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pathDash {
+            0% {
+                stroke-dashoffset: 300;
+            }
+            50% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: 300;
+            }
+        }
+        
+        @keyframes colorChange1 {
+            0% {
+                stroke: #5B42F3;
+            }
+            50% {
+                stroke: #7A5AF8;
+            }
+            100% {
+                stroke: #5B42F3;
+            }
+        }
+        
+        @keyframes colorChange2 {
+            0% {
+                stroke: #7A5AF8;
+            }
+            50% {
+                stroke: #A23FF4;
+            }
+            100% {
+                stroke: #7A5AF8;
+            }
+        }
+        
+        @keyframes colorChange3 {
+            0% {
+                stroke: #A23FF4;
+            }
+            50% {
+                stroke: #C83EF2;
+            }
+            100% {
+                stroke: #A23FF4;
+            }
+        }
+        
+        @keyframes colorChange4 {
+            0% {
+                stroke: #C83EF2;
+            }
+            50% {
+                stroke: #D741ED;
+            }
+            100% {
+                stroke: #C83EF2;
+            }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background: radial-gradient(ellipse at center, rgba(123, 90, 248, 0.3) 0%, rgba(123, 90, 248, 0) 70%);
+            filter: blur(20px);
+            animation: pulse 3s ease infinite;
+        }
+        
+        .loading-particles {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+        }
+        
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 3s infinite ease-in-out;
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: -60px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fade-in 1s ease forwards 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-80px) translateX(20px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+        
+        .app-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .app-content.visible {
+            opacity: 1;
+        }
+        
+        .restart-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5B42F3;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .restart-btn:hover {
+            background-color: #7A5AF8;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loading-animation">
+        <div class="wavy-container">
+            <div class="glow-effect"></div>
+            <svg class="wavy-svg" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                <!-- Top wavy line -->
+                <path class="path-1" d="M30,40 C60,10 90,60 120,40 C150,20 180,60 210,40 C240,20 270,60 300,40" />
+                
+                <!-- Second wavy line -->
+                <path class="path-2" d="M0,60 C30,30 60,80 90,60 C120,40 150,80 180,60 C210,40 240,80 270,60" />
+                
+                <!-- Third wavy line -->
+                <path class="path-3" d="M30,80 C60,60 90,100 120,80 C150,60 180,100 210,80 C240,60 270,100 300,80" />
+                
+                <!-- Bottom wavy line -->
+                <path class="path-4" d="M0,100 C30,80 60,120 90,100 C120,80 150,120 180,100 C210,80 240,120 270,100" />
+            </svg>
+            <div class="loading-particles" id="particles"></div>
+            <div class="loading-text">INITIALIZING</div>
+        </div>
+    </div>
+    
+    <div class="app-content" id="app-content">
+        <h1>Animation Complete</h1>
+        <p>The wavy lines loading animation has finished.</p>
+        <button class="restart-btn" id="restart-btn">Restart Animation</button>
+    </div>
+    
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random positioning around the waves
+            const x = Math.random() * 300;
+            const y = Math.random() * 150;
+            const size = 1 + Math.random() * 3;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            
+            // Random animation delay
+            particle.style.animationDelay = `${Math.random() * 2}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Animation timing control
+        const loadingOverlay = document.getElementById('loading-animation');
+        const appContent = document.getElementById('app-content');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Function to hide the animation and redirect to chat.html
+        function completeAnimation() {
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                // Redirect to chat.html instead of showing app content
+                window.location.href = 'chat.html';
+            }, 500);
+        }
+        
+        // Function to restart the animation
+        function restartAnimation() {
+            appContent.classList.remove('visible');
+            loadingOverlay.style.display = 'flex';
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '1';
+                setTimeout(completeAnimation, 3000);
+            }, 100);
+        }
+        
+        // Set initial timeout to hide animation after 3 seconds
+        setTimeout(completeAnimation, 3000);
+        
+        // Add restart button event listener
+        restartBtn.addEventListener('click', restartAnimation);
+    </script>
+</body>
+</html>

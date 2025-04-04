@@ -1,71 +1,57 @@
-# AI Chatbot Application
+<div align="center"><img src="https://github.com/user-attachments/assets/63bc3058-bace-4234-a473-7d92e6bd1c84" alt="logo"></div>
+<p align="center">VerbaBot</p>
+<p align="center">Multimodal LLM assistant with chat, voice, and RAG.</p>
+<p align="center">Local Control. Global Capabilities.</p>
 
-This project is an AI-powered chat application with features like file upload, web search, and news retrieval. It uses the Ollama API to interact with local language models.
+VerbaBot is designed for those who need a personal digital assistant running locally. It ensures complete privacy of your data, as all processing takes place on the device. By integrating different language models and the RAG pipeline into a single interface, the assistant offers intelligent conversations and analytical features. Additionally, VerbaBot includes network access capabilities, allowing it to retrieve real-time information, perform web searche.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/af81aa6b-66b4-42f3-9fc8-73fbc36205ea" alt="demo">
+</p>
 
 ## Features
 
-- Chat with an AI assistant using Ollama models
-- File upload and processing (including images, PDFs, and more)
-- DuckDuckGo search integration
-- Google News retrieval
-- Chat history management
-- Customizable settings
-
-## Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-* You have installed [Ollama](https://ollama.ai/)
-* You have pulled the following Ollama models:
-  - mistral-nemo:latest (Used as the default language model)
-  - llava:13b (Used for image recognition tasks)
-
-To pull these models, run the following commands after installing Ollama:
-
-```
-ollama pull mistral-nemo:latest
-ollama pull llava:13b
-```
+- Web interface for interacting with the chat bot
+- Natural language Calendar management
+- RAG (Retrieval Augmented Generation) support for document processing
+- Customizable system prompt
+- Document upload for contextual responses
+- Flexible model and parameter settings
 
 ## Installation
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/KazKozDev/VerbaBot.git
-   cd VerbaBot
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/KazKozDev/VerbaBot.git
+cd VerbaBot
 
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3. Ensure Ollama is running on your system. By default, it should be accessible at `http://localhost:11434`.
+# Install dependencies
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. Start the Ollama service if it's not already running.
+```bash
+python server.py
+```
 
-2. Run the server:
-   ```
-   python SERVER.py
-   ```
+The server will start at http://127.0.0.1:5001.
 
-3. Open `chat.html` in your web browser to start chatting with the AI assistant.
+## Project Structure
+
+- `server.py` - Main server file 
+- `chat.html` - Web interface
+- `voice_input.py` - Voice input module
+- `requirements.txt` - Required dependencies
 
 ## Configuration
 
-You can modify the `SERVER.py` file to change default settings such as the LLM model, image recognition model, and system prompt. The default models are:
-
-- LLM Model: "mistral-nemo:latest"
-- Image Recognition Model: "llava:13b"
-
-You can change these in the `SERVER.py` file or through the settings interface in the application.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+To enable voice input capability, uncomment the corresponding dependencies in the `requirements.txt` file and install them.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[MIT](LICENSE) 

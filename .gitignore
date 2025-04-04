@@ -1,31 +1,101 @@
-# Database
+# Databases
 assistant.db
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
 
 # Sensitive information
 client_secret.json
+.env
+.env.*
+!.env.example
 
-# Python virtual environment
-.venv/
-
-# Python cache files
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+.Python
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
 
 # OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# IDE specific files (если вы используете какую-либо IDE)
-.vscode/
+# IDE specific files
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
 
-# Logs
+# Logs and temp files
 *.log
+logs/
+temp/
+tmp/
+temp_audio/
 
-# Временные файлы
-*.tmp
-
-# Файлы с локальными настройками (если такие есть)
+# Local settings
 local_settings.py
+
+# Vector DB and uploads
+vector_db/
+uploads/
+
+# Cache directories
+.universal_research_cache/
+.perplex_cache/
+.research_cache/
+.qodo/
+
+# Backup files
+*_backup*
+server_backup.py
+
+# Audio files
+*.wav
+*.mp3
+*.ogg
+*.flac
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Package directories
+node_modules/
+
+# Compiled files
+*.pyc
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Distribution / packaging
+.Python
