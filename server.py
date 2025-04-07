@@ -733,8 +733,7 @@ You are processing a calendar-related request. The current date and time is {cur
 TASK: Analyze the user's message to identify the calendar operation they want to perform.
 Extract all relevant details like event title, date, time, location, and description.
 
-IMPORTANT: The user may write in English or Russian. Make sure to correctly understand their intent regardless of language.
-For Russian, pay attention to phrases like "создай встречу", "добавь событие", "напомни мне", etc.
+IMPORTANT: The user may write in different languages. Make sure to correctly understand their intent regardless of language.
 
 Output a JSON object with the following structure:
 {{
@@ -757,12 +756,12 @@ Output a JSON object with the following structure:
 }}
 
 IMPORTANT RULES:
-1. Parse dates intelligently, converting relative dates like "tomorrow", "today", "завтра", "сегодня" to ISO dates.
+1. Parse dates intelligently, converting relative dates like "tomorrow", "today", etc. to ISO dates.
 2. Set default meeting duration to 1 hour if not specified.
 3. For morning events without specific time, default to 9:00 AM.
 4. For afternoon events without specific time, default to 2:00 PM.
 5. For evening events without specific time, default to 6:00 PM.
-6. Time mentions like "11 pm", "11 вечера", or "11:00" should be properly parsed.
+6. Time mentions should be properly parsed regardless of format.
 7. Include only the fields that are relevant to the specific intent.
 8. Return VALID JSON that can be parsed programmatically.
 """
@@ -1029,7 +1028,7 @@ async def delete_document(doc_id):
         doc_metadata = rag_system.document_metadata.get(doc_id, {})
         document_path = doc_metadata.get('path')
         
-        # Удаляем файлы векторной базы
+        # Removing vector database files
         faiss_path = os.path.join(VECTOR_DB_FOLDER, f"{doc_id}.faiss")
         index_path = os.path.join(VECTOR_DB_FOLDER, f"{doc_id}.pkl")
         

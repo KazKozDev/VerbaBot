@@ -48,8 +48,9 @@ class ContextualMemory:
                     r"I (?:like|love|enjoy|prefer|hate|dislike|don't like) (.+)",
                     r"My favorite (.+) is (.+)",
                     r"(?:I am|I'm) (?:interested in|passionate about|fond of) (.+)",
-                    r"Мне (?:нравится|не нравится) (.+)",  # Russian patterns
-                    r"Я (?:люблю|обожаю|ненавижу) (.+)",
+                    # Add English alternatives to previously Russian patterns
+                    r"I (?:like|dislike) (.+)",
+                    r"I (?:love|adore|hate) (.+)",
                 ],
                 'importance': 0.8,
                 'entities': ['PRODUCT', 'EVENT', 'FAC', 'LOC', 'GPE']
@@ -59,8 +60,9 @@ class ContextualMemory:
                     r"My (?:name|age|birthday|address|email|phone|job|title|role|company) is (.+)",
                     r"I (?:work at|live in|am from|was born in|graduated from) (.+)",
                     r"I am (?:a|an) (.+)",
-                    r"Меня зовут (.+)",  # Russian patterns
-                    r"Я (?:работаю в|живу в|из|родился в) (.+)",
+                    # Add English alternatives to previously Russian patterns
+                    r"My name is (.+)",
+                    r"I (?:work in|live in|am from|was born in) (.+)",
                 ],
                 'importance': 0.9,
                 'entities': ['PERSON', 'DATE', 'ORG', 'GPE', 'LOC']
@@ -70,8 +72,9 @@ class ContextualMemory:
                     r"I'm working on (?:a|an|the) (.+)",
                     r"My current project is (?:about|on|related to) (.+)",
                     r"I'm building (?:a|an|the) (.+)",
-                    r"Я работаю над (.+)",  # Russian patterns
-                    r"Мой проект (.+)",
+                    # Add English alternatives to previously Russian patterns
+                    r"I am working on (.+)",
+                    r"My project is (.+)",
                 ],
                 'importance': 0.7,
                 'entities': ['PRODUCT', 'ORG', 'EVENT']
@@ -82,9 +85,10 @@ class ContextualMemory:
                     r"I need to (.+)",
                     r"I'm trying to (.+)",
                     r"My goal is to (.+)",
-                    r"Я хочу (.+)",  # Russian patterns
-                    r"Мне нужно (.+)",
-                    r"Моя цель (.+)",
+                    # Add English alternatives to previously Russian patterns
+                    r"I want (.+)",
+                    r"I need (.+)",
+                    r"My goal is (.+)",
                 ],
                 'importance': 0.6,
                 'entities': ['EVENT', 'FAC', 'LOC', 'GPE']

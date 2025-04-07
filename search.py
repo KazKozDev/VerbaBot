@@ -681,12 +681,12 @@ def search_web_with_retries(query: str, num_results=MAX_SEARCH_RESULTS, max_retr
         return urls
     
     # If Google gave no results either, use predefined URLs for bitcoin queries
-    if not google_results and ("биткоин" in query.lower() or "bitcoin" in query.lower()):
+    if not google_results and ("bitcoin" in query.lower()):
         default_urls = [
             "https://www.coindesk.com/price/bitcoin/",
-            "https://ru.investing.com/crypto/bitcoin",
+            "https://investing.com/crypto/bitcoin",
             "https://www.blockchain.com/explorer/assets/btc",
-            "https://bitinfocharts.com/ru/bitcoin/"
+            "https://bitinfocharts.com/bitcoin/"
         ]
         print("[*] Using predefined list of cryptocurrency websites.")
         return default_urls[:num_results]

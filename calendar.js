@@ -93,7 +93,7 @@ class CalendarModule {
         return new Promise((resolve, reject) => {
             console.log("Initializing IndexedDB database");
             
-            // Проверяем, не существует ли уже база данных
+            // Check if the database already exists
             if (this.db) {
                 console.log("Database already initialized");
                 resolve();
@@ -148,7 +148,7 @@ class CalendarModule {
         console.log("Loading events from server...");
         
         try {
-            // Загружаем события с сервера, используя полный URL
+            // Load events from server using the full URL
             const response = await fetch('http://127.0.0.1:5001/calendar/events');
             if (!response.ok) {
                 throw new Error(`Failed to load events: ${response.status} ${response.statusText}`);
@@ -157,7 +157,7 @@ class CalendarModule {
             const data = await response.json();
             console.log(`Loaded ${data.events.length} events from server`);
             
-            // Преобразуем события в нужный формат
+            // Convert events to the required format
             this.events = data.events.map(event => ({
                 id: event.id,
                 title: event.title,
@@ -169,34 +169,34 @@ class CalendarModule {
                 source: 'server'
             }));
             
-            // Также загружаем события из IndexedDB, если они есть
+            // Also load events from IndexedDB if available
             const dbEvents = await this.getAllEventsFromDb();
             console.log(`Loaded ${dbEvents.length} events from IndexedDB`);
             
-            // Объединяем события, избегая дубликатов
+            // Merge events, avoiding duplicates
             const serverIds = new Set(this.events.map(e => e.id));
             const uniqueDbEvents = dbEvents.filter(e => !serverIds.has(e.id));
             
             this.events = [...this.events, ...uniqueDbEvents];
             console.log(`Total events after merge: ${this.events.length}`);
             
-            // Отладочная информация о событиях
+            // Debug information about events
             this.debugShowAllEvents();
             
-            // Рендерим календарь с новыми событиями
+            // Render calendar with new events
             this.renderCalendar();
             this.renderUpcomingEvents();
             
             return this.events;
         } catch (error) {
             console.error("Error loading events:", error);
-            // Если ошибка загрузки с сервера, пробуем загрузить только из базы данных
+            // If there's an error loading from server, try loading only from the database
             try {
                 const dbEvents = await this.getAllEventsFromDb();
                 console.log(`Loaded ${dbEvents.length} events from IndexedDB as fallback`);
                 this.events = dbEvents;
                 
-                // Рендерим календарь с событиями из базы данных
+                // Render calendar with events from the database
                 this.renderCalendar();
                 this.renderUpcomingEvents();
                 
