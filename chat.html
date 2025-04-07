@@ -102,10 +102,11 @@
             color: #d1d1d1;
             padding-right: 40px;
         }
-        .bot-message {
+        .assistant-message {
             background-color: #444654;
             align-self: flex-start;
             padding-right: 40px;
+            margin-left: 20px;
         }
         .message-actions {
             display: none;
@@ -118,6 +119,7 @@
         }
         #input-area {
             display: flex;
+            flex-direction: column;
             padding: 15px 20px 20px;
             background-color: #40414f;
             width: 100%;
@@ -147,6 +149,9 @@
             cursor: pointer;
             font-size: 1em;
         }
+        #file-upload-button {
+            padding: 10px 10px;
+        }
         #send-button:hover, #file-upload-button:hover, .font-size-button:hover {
             background-color: #6e7081;
         }
@@ -162,16 +167,683 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             text-align: left;
         }
         #new-chat-button:hover {
             background-color: #3a3b42;
         }
+        
+        /* RAG styles */
+        .document-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        
+        .document-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            background-color: #2a2b32;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        
+        .document-item .doc-name {
+            flex-grow: 1;
+            margin-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .document-item .doc-chunks {
+            margin-right: 10px;
+            color: #aaa;
+        }
+        
+        .delete-doc-btn {
+            padding: 2px 8px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .delete-doc-btn:hover {
+            background-color: #6e7081;
+        }
+        
+        .rag-section {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #2a2b32;
+            border-radius: 5px;
+        }
+        
+        .rag-section h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        #rag-document-upload {
+            padding: 5px 10px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #rag-document-upload:hover {
+            background-color: #6e7081;
+        }
+        
+        .search-section {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3a3b42;
+            border-radius: 5px;
+        }
+        
+        .search-item {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #40414f;
+            border-radius: 3px;
+        }
+        
+        .search-item .metadata {
+            color: #aaa;
+            font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+        
+        .search-item .content {
+            color: #ececf1;
+        }
+        
+        #sidebar-tabs {
+            display: flex;
+            border-bottom: 1px solid #3a3b42;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        
+        .sidebar-tab {
+            padding: 8px 15px;
+            cursor: pointer;
+            background-color: #2a2b32;
+            border: none;
+            color: #ececf1;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .sidebar-tab.active {
+            background-color: #3a3b42;
+            border-bottom: 2px solid #61dafb;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        #rag-document-list {
+            margin-top: 15px;
+        }
+        /* End RAG styles */
+
+        /* Calendar styles */
+        .calendar-section {
+            padding: 10px 0;
+            color: #ececf1;
+        }
+        
+        /* Settings Tab Styles */
+        .settings-content {
+            padding-right: 20px;
+        }
+        .settings-label {
+            display: block;
+            margin: 15px 0 5px 0;
+            font-weight: bold;
+        }
+        .settings-input {
+            width: 100%;
+            padding: 8px;
+            background-color: #40414f;
+            color: #ececf1;
+            border: 1px solid #565869;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .settings-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .settings-buttons button {
+            padding: 8px 15px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .settings-buttons button:hover {
+            background-color: #6e7081;
+        }
+        
+        .calendar-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        #current-date-display {
+            margin: 0 10px;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .calendar-nav-btn {
+            background-color: #2a2b32;
+            color: #ececf1;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .calendar-nav-btn:hover {
+            background-color: #3a3b42;
+        }
+        
+        .calendar-view-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-view-btn {
+            background-color: #2a2b32;
+            color: #ececf1;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+        
+        .calendar-view-btn:hover {
+            background-color: #3a3b42;
+        }
+        
+        .calendar-view-btn.active {
+            background-color: #565869;
+        }
+        
+        #calendar-container {
+            background-color: #2a2b32;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Month view grid */
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        
+        .day-header {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            background-color: #3a3b42;
+        }
+        
+        .day-cell {
+            min-height: 80px;
+            padding: 5px;
+            background-color: #3a3b42;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .day-cell.other-month {
+            background-color: #313238;
+            color: #8e8e96;
+        }
+        
+        .day-cell.today {
+            background-color: #444654;
+            border: 1px solid #61dafb;
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 0.8em;
+            color: #ececf1;
+        }
+        
+        .day-events {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .day-event {
+            margin: 2px 0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: white;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        
+        .day-event:hover {
+            filter: brightness(110%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Стили для многодневных событий */
+        .multi-day-event {
+            border-left: 3px solid rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            opacity: 0.85;
+        }
+        
+        .multi-day-event::before {
+            content: "↪";
+            margin-right: 3px;
+            font-weight: bold;
+        }
+        
+        /* Week and day view */
+        .time-grid {
+            display: grid;
+            grid-template-columns: 50px repeat(7, 1fr);
+            gap: 1px;
+        }
+        
+        .day-view-grid {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 1px;
+        }
+        
+        .time-cell {
+            background-color: #3a3b42;
+            border-bottom: 1px solid #202123;
+            height: 40px;
+            position: relative;
+        }
+        
+        .time-label {
+            font-size: 0.7em;
+            text-align: right;
+            padding-right: 5px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .event-item {
+            position: absolute;
+            left: 0;
+            right: 0;
+            border-radius: 3px;
+            padding: 2px 5px;
+            overflow: hidden;
+            font-size: 0.8em;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        /* Calendar events list */
+        .calendar-events {
+            margin-bottom: 20px;
+        }
+        
+        #event-list {
+            background-color: #2a2b32;
+            border-radius: 5px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .event-list-item {
+            margin-bottom: 8px;
+            padding: 8px;
+            background-color: #3a3b42;
+            border-radius: 3px;
+            border-left: 3px solid #3174ad;
+            cursor: pointer;
+        }
+        
+        .event-list-item:hover {
+            background-color: #40414f;
+        }
+        
+        .event-list-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .event-list-time {
+            font-size: 0.8em;
+            color: #c0c0c6;
+        }
+        
+        /* Add event form styles */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Полупрозрачный фон для модального окна */
+        .modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: rgba(0, 0, 0, 0.7) !important;
+            z-index: 9998 !important;
+            display: none !important;
+        }
+        
+        .modal-overlay.visible {
+            display: block !important;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #add-event-form {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            background-color: #2a2b32 !important;
+            width: 400px !important;
+            max-width: 90% !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8) !important;
+            z-index: 9999 !important;
+            padding: 25px !important;
+            border: 3px solid #4CAF50 !important;
+        }
+        
+        #add-event-form.hidden {
+            display: none !important;
+        }
+        
+        #add-event-form:not(.hidden) {
+            display: block !important;
+        }
+        
+        #event-form-close {
+            position: absolute !important;
+            top: 10px !important;
+            right: 10px !important;
+            background: none !important;
+            border: none !important;
+            font-size: 24px !important;
+            color: #ffffff !important;
+            cursor: pointer !important;
+        }
+        
+        /* Заголовок формы */
+        #add-event-form h3 {
+            margin-top: 0 !important;
+            color: white !important;
+            font-size: 24px !important;
+            text-align: center !important;
+            padding-bottom: 15px !important;
+            margin-bottom: 20px !important;
+            border-bottom: 2px solid white !important;
+        }
+        
+        #add-event-form .form-group {
+            margin-bottom: 15px;
+            padding-right: 0;
+        }
+        #add-event-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ececf1;
+        }
+        #add-event-form input, 
+        #add-event-form select, 
+        #add-event-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #565869;
+            background-color: #40414f;
+            color: #ececf1;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        #add-event-form input:focus,
+        #add-event-form select:focus,
+        #add-event-form textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        #add-event-form .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        #add-event-form .calendar-btn {
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        #add-event-form button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #add-event-form button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        #add-event-form #cancel-event-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        #add-event-form #cancel-event-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* Calendar actions and buttons */
+        .calendar-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-btn {
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            flex-grow: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .calendar-btn:hover {
+            background-color: #6e7081;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        #add-event-btn {
+            background-color: #4CAF50;
+        }
+        
+        #add-event-btn:hover {
+            background-color: #3e8e41;
+        }
+        
+        /* Shared form styles */
+        .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Google Calendar section */
+        #google-calendar-sync {
+            background-color: #2a2b32;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        #google-calendars-list {
+            margin-top: 15px;
+        }
+        
+        .calendar-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px;
+            background-color: #3a3b42;
+            border-radius: 3px;
+        }
+        
+        .calendar-checkbox input {
+            margin-right: 10px;
+        }
+        
+        .calendar-color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        #calendars-container {
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        
+        /* Event details popup */
+        #event-details-popup {
+            position: fixed;
+            z-index: 1000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2a2b32;
+            border-radius: 5px;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .event-details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .event-details-title {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .close-popup {
+            background: none;
+            border: none;
+            color: #ececf1;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        
+        .event-details-content {
+            margin-bottom: 20px;
+        }
+        
+        .event-details-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        /* End Calendar styles */
+
+        /* Calendar styles */
         .chat-history-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 6px 10px;
             margin-bottom: 5px;
             background-color: #2a2b32;
             border-radius: 5px;
@@ -201,10 +873,13 @@
             background: none;
             border: none;
             color: #ececf1;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
         .rename-button {
             margin-left: 5px;
+        }
+        .delete-button {
+            margin-left: auto;
         }
         .pinned {
             order: -1;
@@ -226,6 +901,10 @@
         }
         #search-options label:first-child {
             margin-left: 15px;
+        }
+        #rag-status {
+            margin-right: 10px;
+            font-size: 0.8em;
         }
         #font-size-controls {
             display: flex;
@@ -253,19 +932,16 @@
             to { transform: rotate(360deg); }
         }
         #settings-button {
-            width: 100%;
-            padding: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 8px 15px;
             background-color: #2a2b32;
             color: #ececf1;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
-            text-align: left;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
         }
         #settings-button:hover {
             background-color: #3a3b42;
@@ -322,12 +998,13 @@
             display: block;
             width: 100%;
             padding: 10px;
-            margin-top: 20px;
+            margin-top: 0;
             background-color: #565869;
             color: #ececf1;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            flex: 2;
         }
         #save-settings:hover {
             background-color: #6e7081;
@@ -380,35 +1057,927 @@
             display: flex;
             align-items: center;
         }
+        #model-select {
+            background-color: #40414f;
+            color: #ececf1;
+            border: 1px solid #565869;
+            border-radius: 5px;
+            padding: 8px 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            min-width: 200px;
+        }
+        #model-select-container {
+            display: flex;
+            align-items: center;
+        }
+        .settings-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        #reset-system-prompt {
+            padding: 10px;
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 3;
+        }
+        #reset-system-prompt:hover {
+            background-color: #6e7081;
+        }
+        #file-upload-button {
+            margin-left: 10px;
+        }
+        .document-actions button:hover {
+            background-color: #6e7081;
+        }
+        #add-event-form textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        /* Добавим стили для закрытия формы */
+        #event-form-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        #settings-tab h2 {
+            margin-left: 0;
+        }
+        .settings-section-title {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #ececf1;
+            font-size: 1.2em;
+            border-bottom: 1px solid #565869;
+            padding-bottom: 8px;
+        }
+        .settings-help {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .settings-help a {
+            color: #61dafb;
+            text-decoration: none;
+        }
+        .settings-help a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mail Tab Styles */
+        .mail-section {
+            padding: 10px 0;
+            color: #ececf1;
+        }
+
+        .mail-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #565869;
+        }
+
+        .mail-header h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .mail-auth-status {
+            margin-bottom: 10px;
+        }
+
+        .mail-auth-status #mail-auth-status {
+            color: #F44336;
+        }
+
+        .mail-auth-status #mail-auth-status.connected {
+            color: #4CAF50;
+        }
+
+        .mail-btn {
+            background-color: #565869;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .mail-btn:hover {
+            background-color: #6e7081;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .mail-btn.primary-btn {
+            background-color: #4CAF50;
+        }
+
+        .mail-btn.primary-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        .mail-navigation {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .mail-folder-btn {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            color: #ececf1;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.2s;
+        }
+
+        .mail-folder-btn:hover {
+            background-color: #3a3b42;
+        }
+
+        .mail-folder-btn.active {
+            background-color: #40414f;
+            font-weight: bold;
+        }
+
+        .mail-icon {
+            margin-right: 10px;
+            font-style: normal;
+        }
+
+        .unread-count, .draft-count {
+            margin-left: auto;
+            background-color: #565869;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .mail-actions {
+            display: flex;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .mail-search {
+            display: flex;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        #mail-search-input {
+            flex-grow: 1;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #565869;
+            background-color: #40414f;
+            color: #ececf1;
+        }
+
+        .mail-content {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 400px);
+            min-height: 300px;
+            background-color: #2a2b32;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .mail-list-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mail-list-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #40414f;
+            border-bottom: 1px solid #565869;
+        }
+
+        .mail-select-all {
+            margin-right: 15px;
+        }
+
+        .mail-list-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mail-action-btn {
+            background: none;
+            border: none;
+            color: #ececf1;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .mail-action-btn:hover {
+            color: #4CAF50;
+        }
+
+        .mail-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .mail-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #3a3b42;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .mail-item:hover {
+            background-color: #40414f;
+        }
+
+        .mail-item.unread {
+            background-color: #40414f;
+            font-weight: bold;
+        }
+
+        .mail-item-checkbox {
+            margin-right: 10px;
+        }
+
+        .mail-item-content {
+            flex: 1;
+        }
+
+        .mail-item-sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .mail-item-subject {
+            margin-bottom: 3px;
+        }
+
+        .mail-item-preview {
+            font-size: 0.9em;
+            color: #a7a7a7;
+        }
+
+        .mail-item-date {
+            margin-left: 15px;
+            font-size: 0.8em;
+            color: #a7a7a7;
+            white-space: nowrap;
+        }
+
+        .mail-list-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #40414f;
+            border-top: 1px solid #565869;
+        }
+
+        #page-indicator {
+            margin: 0 15px;
+        }
+
+        .mail-view-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mail-view-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #40414f;
+            border-bottom: 1px solid #565869;
+        }
+
+        .mail-view-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mail-view {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .mail-view-subject {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .mail-view-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #565869;
+        }
+
+        .mail-view-sender, .mail-view-recipients, .mail-view-date {
+            margin-right: 20px;
+            margin-bottom: 5px;
+        }
+
+        .mail-view-label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .mail-view-body {
+            line-height: 1.5;
+        }
+
+        .mail-view-attachments {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #565869;
+        }
+
+        .mail-attachment {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            margin-bottom: 5px;
+            background-color: #40414f;
+            border-radius: 3px;
+        }
+
+        .mail-attachment-icon {
+            margin-right: 10px;
+        }
+
+        .mail-attachment-name {
+            flex: 1;
+        }
+
+        .mail-attachment-download {
+            background: none;
+            border: none;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .mail-empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #a7a7a7;
+        }
+
+        .mail-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+        }
+
+        .mail-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: #2a2b32;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .mail-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #40414f;
+            border-bottom: 1px solid #565869;
+        }
+
+        .mail-modal-header h3 {
+            margin: 0;
+        }
+
+        .mail-close-btn {
+            background: none;
+            border: none;
+            color: #ececf1;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mail-modal-content {
+            padding: 15px;
+        }
+
+        .compose-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .compose-field {
+            margin-bottom: 15px;
+        }
+
+        .compose-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .compose-field input, 
+        .compose-field textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #565869;
+            background-color: #40414f;
+            color: #ececf1;
+        }
+
+        .compose-field textarea {
+            resize: vertical;
+        }
+
+        .compose-attachments {
+            margin-bottom: 15px;
+        }
+
+        .attachment-list {
+            margin-top: 10px;
+        }
+
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            margin-bottom: 5px;
+            background-color: #40414f;
+            border-radius: 3px;
+        }
+
+        .attachment-item-name {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .attachment-remove-btn {
+            background: none;
+            border: none;
+            color: #F44336;
+            cursor: pointer;
+        }
+
+        .compose-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Loading Animation Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .wavy-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wavy-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(203, 62, 242, 0.5));
+        }
+        
+        .path-1, .path-2, .path-3, .path-4 {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .path-1 {
+            stroke: #5B42F3;
+            animation: pathAnimate 2s ease-in-out infinite alternate, 
+                       colorChange1 3s ease-in-out infinite;
+        }
+        
+        .path-2 {
+            stroke: #7A5AF8;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: pathAnimate 2.5s ease-in-out infinite alternate, 
+                       pathDash 4s ease-in-out infinite,
+                       colorChange2 3s ease-in-out infinite;
+        }
+        
+        .path-3 {
+            stroke: #A23FF4;
+            animation: pathAnimate 3s ease-in-out infinite alternate,
+                       colorChange3 3s ease-in-out infinite;
+        }
+        
+        .path-4 {
+            stroke: #C83EF2;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: pathAnimate 3.5s ease-in-out infinite alternate,
+                       pathDash 4.5s ease-in-out infinite reverse,
+                       colorChange4 3s ease-in-out infinite;
+        }
+        
+        @keyframes pathAnimate {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pathDash {
+            0% {
+                stroke-dashoffset: 300;
+            }
+            50% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: 300;
+            }
+        }
+        
+        @keyframes colorChange1 {
+            0% {
+                stroke: #5B42F3;
+            }
+            50% {
+                stroke: #7A5AF8;
+            }
+            100% {
+                stroke: #5B42F3;
+            }
+        }
+        
+        @keyframes colorChange2 {
+            0% {
+                stroke: #7A5AF8;
+            }
+            50% {
+                stroke: #A23FF4;
+            }
+            100% {
+                stroke: #7A5AF8;
+            }
+        }
+        
+        @keyframes colorChange3 {
+            0% {
+                stroke: #A23FF4;
+            }
+            50% {
+                stroke: #C83EF2;
+            }
+            100% {
+                stroke: #A23FF4;
+            }
+        }
+        
+        @keyframes colorChange4 {
+            0% {
+                stroke: #C83EF2;
+            }
+            50% {
+                stroke: #D741ED;
+            }
+            100% {
+                stroke: #C83EF2;
+            }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background: radial-gradient(ellipse at center, rgba(123, 90, 248, 0.3) 0%, rgba(123, 90, 248, 0) 70%);
+            filter: blur(20px);
+            animation: pulse 3s ease infinite;
+        }
+        
+        .loading-particles {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+        }
+        
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 3s infinite ease-in-out;
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: -60px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fade-in 1s ease forwards 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-80px) translateX(20px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Animation Overlay -->
+    <div class="loading-overlay" id="loading-animation">
+        <div class="wavy-container">
+            <div class="glow-effect"></div>
+            <svg class="wavy-svg" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                <!-- Top wavy line -->
+                <path class="path-1" d="M30,40 C60,10 90,60 120,40 C150,20 180,60 210,40 C240,20 270,60 300,40" />
+                
+                <!-- Second wavy line -->
+                <path class="path-2" d="M0,60 C30,30 60,80 90,60 C120,40 150,80 180,60 C210,40 240,80 270,60" />
+                
+                <!-- Third wavy line -->
+                <path class="path-3" d="M30,80 C60,60 90,100 120,80 C150,60 180,100 210,80 C240,60 270,100 300,80" />
+                
+                <!-- Bottom wavy line -->
+                <path class="path-4" d="M0,100 C30,80 60,120 90,100 C120,80 150,120 180,100 C210,80 240,120 270,100" />
+            </svg>
+            <div class="loading-particles" id="particles"></div>
+            <div class="loading-text">LOADING VERBABOT</div>
+        </div>
+    </div>
+    
     <div id="app">
         <div id="sidebar">
-            <button id="new-chat-button">New Chat</button>
-            <div id="chat-history-list"></div>
-            <button id="settings-button">Settings</button>
+            <div id="sidebar-tabs">
+                <button class="sidebar-tab active" data-tab="chats">Chats</button>
+                <button class="sidebar-tab" data-tab="documents">Documents</button>
+                <button class="sidebar-tab" data-tab="calendar">Calendar</button>
+                <button class="sidebar-tab" data-tab="settings">Settings</button>
+            </div>
+            
+            <div id="chats-tab" class="tab-content active">
+                <button id="new-chat-button">New Chat</button>
+                <div id="chat-history-list"></div>
+            </div>
+            
+            <div id="documents-tab" class="tab-content">
+                <div class="rag-section">
+                    <h3>Document Library</h3>
+                    <p>Upload documents to ask questions about their content.</p>
+                    <button id="rag-document-upload">Upload Document</button>
+                    <div id="rag-document-list"></div>
+                </div>
+            </div>
+            
+            <div id="calendar-tab" class="tab-content">
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button id="prev-date-btn" class="calendar-nav-btn">←</button>
+                            <h3 id="current-date-display"></h3>
+                            <button id="today-btn" class="calendar-nav-btn">Today</button>
+                            <button id="next-date-btn" class="calendar-nav-btn">→</button>
+                        </div>
+                        <div class="calendar-view-options">
+                            <button id="month-view-btn" class="calendar-view-btn active">Month</button>
+                            <button id="week-view-btn" class="calendar-view-btn">Week</button>
+                            <button id="day-view-btn" class="calendar-view-btn">Day</button>
+                        </div>
+                    </div>
+                    <div id="calendar-container"></div>
+                    <div class="calendar-events">
+                        <h3>Upcoming Events</h3>
+                        <div id="event-list"></div>
+                    </div>
+                    <div class="calendar-actions">
+                        <button id="add-event-btn" class="calendar-btn">Add Event</button>
+                        <button id="sync-calendar-btn" class="calendar-btn">Sync with Google Calendar</button>
+                    </div>
+                    
+                    <!-- Overlay для затемнения фона -->
+                    <div id="modal-overlay" class="modal-overlay"></div>
+                    
+                    <div id="add-event-form" class="hidden">
+                        <button id="event-form-close">×</button>
+                        <h3>Add New Event</h3>
+                        <form id="event-form">
+                            <div class="form-group">
+                                <label for="event-title">Title</label>
+                                <input type="text" id="event-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-start">Start</label>
+                                <input type="datetime-local" id="event-start" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-end">End</label>
+                                <input type="datetime-local" id="event-end" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-category">Category</label>
+                                <select id="event-category">
+                                    <option value="default">Default</option>
+                                    <option value="work">Work</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="holiday">Holiday</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-location">Location</label>
+                                <input type="text" id="event-location">
+                            </div>
+                            <div class="form-group">
+                                <label for="event-description">Description</label>
+                                <textarea id="event-description"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="calendar-btn">Save</button>
+                                <button type="button" id="cancel-event-btn" class="calendar-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div id="google-calendar-sync" class="hidden">
+                        <h3>Google Calendar Synchronization</h3>
+                        <div id="google-auth-status">
+                            <p>Status: <span id="auth-status">Not connected</span></p>
+                        </div>
+                        <div id="google-auth-container">
+                            <button id="google-auth-btn" class="calendar-btn">Connect to Google Calendar</button>
+                        </div>
+                        <div id="google-calendars-list" class="hidden">
+                            <h4>Your Calendars</h4>
+                            <div id="calendars-container"></div>
+                            <div class="form-actions">
+                                <button id="sync-selected-calendars" class="calendar-btn">Sync Selected</button>
+                                <button id="close-google-sync" class="calendar-btn">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="settings-tab" class="tab-content">
+                <h3>Settings</h3>
+                <div class="settings-content">
+                    <label for="llm-model" class="settings-label">LLM Model Name:</label>
+                    <input type="text" id="llm-model" class="settings-input" placeholder="Enter LLM model name">
+                    <label for="image-recognition-model" class="settings-label">Image Recognition Model Name:</label>
+                    <input type="text" id="image-recognition-model" class="settings-input" placeholder="Enter image recognition model name">
+                    <label for="system-prompt" class="settings-label">System Prompt:</label>
+                    <textarea id="system-prompt" class="settings-input" rows="5" placeholder="Enter system prompt"></textarea>
+                    
+                    <h3 class="settings-section-title">Google Calendar Integration</h3>
+                    <label for="google-api-key" class="settings-label">Google API Key:</label>
+                    <input type="text" id="google-api-key" class="settings-input" placeholder="Enter your Google API Key">
+                    <label for="google-client-id" class="settings-label">Google Client ID:</label>
+                    <input type="text" id="google-client-id" class="settings-input" placeholder="Enter your Google Client ID">
+                    <label for="google-client-secret" class="settings-label">Google Client Secret:</label>
+                    <input type="password" id="google-client-secret" class="settings-input" placeholder="Enter your Google Client Secret">
+                    <p class="settings-help">To set up Google Calendar integration, create a project in the <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a> and enable the Google Calendar API.</p>
+                    
+                    <div class="settings-buttons">
+                        <button id="reset-system-prompt">Reset to Default</button>
+                        <button id="save-settings">Save Settings</button>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         <div id="main-content">
             <div id="font-size-controls">
                 <button class="font-size-button" id="decrease-font">A-</button>
                 <button class="font-size-button" id="increase-font">A+</button>
             </div>
+            
             <div id="chat-container"></div>
+            
             <div id="input-area">
                 <div id="search-options">
                     <label>
-                        <input type="checkbox" id="use-duckduckgo">
-                        Search
+                        <input type="checkbox" id="use-deep-search">
+                        Deep Search
                     </label>
                     <label>
-                        <input type="checkbox" id="use-google-news">
-                        News
+                        <input type="checkbox" id="use-rag">
+                        RAG
                     </label>
-                    <label>
-                        <input type="checkbox" id="use-link">
-                        Link
-                    </label>
+                    <span id="rag-status"></span>
+                    <div class="model-select-container">
+                        <select id="model-select">
+                            <option value="" disabled selected>Loading models...</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="input-container">
                     <button id="file-upload-button">📎</button>
@@ -419,23 +1988,70 @@
             </div>
         </div>
     </div>
-    <div id="settings-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Settings</h2>
-            <label for="llm-model" class="settings-label">LLM Model Name:</label>
-            <input type="text" id="llm-model" class="settings-input" placeholder="Enter LLM model name">
-            <label for="image-recognition-model" class="settings-label">Image Recognition Model Name:</label>
-            <input type="text" id="image-recognition-model" class="settings-input" placeholder="Enter image recognition model name">
-            <label for="system-prompt" class="settings-label">System Prompt:</label>
-            <textarea id="system-prompt" class="settings-input" rows="5" placeholder="Enter system prompt"></textarea>
-            <button id="save-settings">Save Settings</button>
-        </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <script src="app.js"></script>
+    <script src="utils.js"></script>
+    <script src="calendar.js"></script>
+    <script>
+        // Создание плавающих частиц для анимации
+        const createLoadingParticles = () => {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Случайное позиционирование вокруг волн
+                const x = Math.random() * 300;
+                const y = Math.random() * 150;
+                const size = 1 + Math.random() * 3;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Случайная задержка анимации
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        };
+        
+        // Функция скрытия анимации загрузки
+        const hideLoadingAnimation = () => {
+            const loadingOverlay = document.getElementById('loading-animation');
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
+            
+            // Сохраняем в localStorage флаг, что страница была загружена
+            localStorage.setItem('pageLoaded', 'true');
+        };
+        
+        // Проверяем, первый ли это запуск страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageLoaded = localStorage.getItem('pageLoaded');
+            const loadingOverlay = document.getElementById('loading-animation');
+            
+            if (!pageLoaded) {
+                // Первый запуск страницы - показываем анимацию
+                createLoadingParticles();
+                loadingOverlay.style.display = 'flex';
+                
+                // Скрываем анимацию через 3 секунды
+                setTimeout(hideLoadingAnimation, 3000);
+            } else {
+                // Не первый запуск - скрываем анимацию сразу
+                loadingOverlay.style.display = 'none';
+            }
+        });
+    </script>
+
     <script>
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
@@ -446,18 +2062,16 @@
         const chatHistoryList = document.getElementById('chat-history-list');
         const decreaseFontButton = document.getElementById('decrease-font');
         const increaseFontButton = document.getElementById('increase-font');
-        const settingsButton = document.getElementById('settings-button');
-        const settingsModal = document.getElementById('settings-modal');
-        const closeButton = document.querySelector('.close');
         const saveSettingsButton = document.getElementById('save-settings');
+        const resetSystemPromptButton = document.getElementById('reset-system-prompt');
         const llmModelInput = document.getElementById('llm-model');
         const imageRecognitionModelInput = document.getElementById('image-recognition-model');
         const systemPromptInput = document.getElementById('system-prompt');
-        const useLinkCheckbox = document.getElementById('use-link');
+        const modelSelect = document.getElementById('model-select');
         
         let currentChatId = null;
-        let llmModel = localStorage.getItem('llmModel') || 'mistral-nemo:latest';
-        let imageRecognitionModel = localStorage.getItem('imageRecognitionModel') || 'llava:13b';
+        let llmModel = 'gemma3:12b';
+        let imageRecognitionModel = localStorage.getItem('imageRecognitionModel') || 'gemma3:12b';
         let systemPrompt = localStorage.getItem('systemPrompt') || 'From this point on, write a concise response that contains complete and useful information on the topic of the question. Do not repeat the user\'s query in one way or another in your answers.';
         
         llmModelInput.value = llmModel;
@@ -467,6 +2081,102 @@
         let currentFontSize = localStorage.getItem('fontSize') || 16;
         document.getElementById('app').style.fontSize = `${currentFontSize}px`;
         
+        // Fetch available models when the page loads
+        async function fetchAvailableModels() {
+            try {
+                const response = await fetch('http://127.0.0.1:5001/available_models');
+                const data = await response.json();
+                
+                modelSelect.innerHTML = ''; // Clear loading message
+                
+                if (data.models && data.models.length > 0) {
+                    data.models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model;
+                        option.textContent = model;
+                        
+                        // Always select gemma3:12b as the default model
+                        if (model === 'gemma3:12b') {
+                            option.selected = true;
+                            llmModel = 'gemma3:12b';
+                        }
+                        
+                        modelSelect.appendChild(option);
+                    });
+                } else {
+                    // Fallback if no models are available
+                    const option = document.createElement('option');
+                    option.value = 'gemma3:12b';
+                    option.textContent = 'gemma3:12b';
+                    option.selected = true;
+                    llmModel = 'gemma3:12b';
+                    modelSelect.appendChild(option);
+                }
+            } catch (error) {
+                console.error('Error fetching models:', error);
+                // Set a default option in case of error
+                modelSelect.innerHTML = '';
+                const option = document.createElement('option');
+                option.value = 'gemma3:12b';
+                option.textContent = 'gemma3:12b';
+                option.selected = true;
+                llmModel = 'gemma3:12b';
+                modelSelect.appendChild(option);
+            }
+        }
+        
+        // Call fetchAvailableModels when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchAvailableModels();
+            fetchServerSettings();
+            fetchGoogleCalendarSettings();
+            
+            // Initialize the calendar after DOM is loaded
+            if (typeof CalendarModule !== 'undefined') {
+                const calendar = new CalendarModule();
+                calendar.init();
+                window.calendarModule = calendar;
+            }
+        });
+
+        // Fetch server settings
+        async function fetchServerSettings() {
+            try {
+                const response = await fetch('http://127.0.0.1:5001/get_settings');
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Check if system prompt exists in local storage
+                    const localSystemPrompt = localStorage.getItem('systemPrompt');
+                    
+                    // If no local prompt exists or it was reset, use the prompt from the server
+                    if (!localSystemPrompt) {
+                        systemPrompt = data.system_prompt;
+                        systemPromptInput.value = systemPrompt;
+                        localStorage.setItem('systemPrompt', systemPrompt);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching server settings:', error);
+            }
+        }
+        
+        // Fetch Google Calendar settings
+        async function fetchGoogleCalendarSettings() {
+            try {
+                const response = await fetch('http://127.0.0.1:5001/google_calendar_settings');
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('google-api-key').value = data.api_key || '';
+                    document.getElementById('google-client-id').value = data.client_id || '';
+                    document.getElementById('google-client-secret').value = data.client_secret || '';
+                }
+            } catch (error) {
+                console.error('Error fetching Google API settings:', error);
+            }
+        }
+        
         function changeFontSize(delta) {
             currentFontSize = Math.max(12, Math.min(24, parseInt(currentFontSize) + delta));
             document.getElementById('app').style.fontSize = `${currentFontSize}px`;
@@ -475,39 +2185,25 @@
         
         function addMessage(message, isUser, messageId) {
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'assistant-message');
+            messageDiv.dataset.messageId = messageId;
+
             if (typeof message === 'string') {
-                let contentHtml = DOMPurify.sanitize(marked.parse(message));
-                contentHtml = contentHtml.replace(/<\/p><br><p>/g, '</p><p>');
-                
                 if (!isUser) {
-                    const searchTypes = [
-                        {type: 'DuckDuckGo search results', className: 'duckduckgo-results'},
-                        {type: 'original news articles', className: 'news-results'}
-                    ];
-                    
-                    for (const searchType of searchTypes) {
-                        if (message.includes(`Here are the ${searchType.type} I based my`)) {
-                            const [mainContent, resultsSection] = message.split(`Here are the ${searchType.type} I based my`);
-                            contentHtml = DOMPurify.sanitize(marked.parse(mainContent)) + 
-                            `<div class="search-section ${searchType.className}"><h4>${searchType.type}:</h4>`;
-                            
-                            const resultItems = resultsSection.match(/- (.+)\n  (https?:\/\/\S+)/g);
-                            if (resultItems) {
-                                resultItems.forEach(item => {
-                                    const [_, title, url] = item.match(/- (.+)\n  (https?:\/\/\S+)/);
-                                    contentHtml += `<div class="search-item"><a href="${url}" target="_blank">${title}</a></div>`;
-                                });
-                            }
-                            contentHtml += '</div>';
-                            break;
-                        }
-                    }
+                    // Process Markdown for assistant messages
+                    const rawHtml = marked.parse(message);
+                    messageDiv.innerHTML = DOMPurify.sanitize(rawHtml);
+                } else {
+                    // For user messages, just replace newlines
+                    messageDiv.innerHTML = message.replace(/\n/g, '<br>');
                 }
-                messageDiv.innerHTML = contentHtml;
-            } else {
+            } else if (message instanceof Node) {
+                // If message is already an HTML node (e.g., file preview), append it
                 messageDiv.appendChild(message);
+            } else {
+                // Fallback for other types
+                messageDiv.innerHTML = String(message).replace(/\n/g, '<br>');
             }
             
             const actionsSpan = document.createElement('span');
@@ -521,7 +2217,7 @@
         
         async function deleteMessage(messageId) {
             try {
-                const response = await fetch('http://127.0.0.1:5000/delete_message', {
+                const response = await fetch('http://127.0.0.1:5001/delete_message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -551,7 +2247,7 @@
                 const newTitle = input.value.trim();
                 if (newTitle && newTitle !== currentTitle) {
                     try {
-                        const response = await fetch('http://127.0.0.1:5000/rename_chat', {
+                        const response = await fetch('http://127.0.0.1:5001/rename_chat', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -585,48 +2281,147 @@
             const message = userInput.value.trim();
             if (message === '') return;
             
-            const useDuckDuckGo = document.getElementById('use-duckduckgo').checked;
-            const useGoogleNews = document.getElementById('use-google-news').checked;
-            const useLink = useLinkCheckbox.checked;
+            // Clear input immediately
+            userInput.value = '';
             
+            // Show loading indicator
             isProcessing = true;
             sendButton.disabled = true;
             const loadingIndicator = document.createElement('div');
             loadingIndicator.className = 'loading';
             chatContainer.appendChild(loadingIndicator);
             
-            try {
-                const response = await fetch('http://127.0.0.1:5000/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                        chat_id: currentChatId,
-                        use_duckduckgo: useDuckDuckGo,
-                        use_google_news: useGoogleNews,
-                        use_link: useLink,
-                        llm_model: llmModel,
-                        system_prompt: systemPrompt
-                    }),
-                });
-                const data = await response.json();
-                addMessage(message, true, data.user_message_id);
-                addMessage(data.response, false, data.assistant_message_id);
-                if (data.chat_id) {
-                    currentChatId = data.chat_id;
-                    await updateChatHistory();
+            // Function to process as calendar command
+            const processAsCalendarCommand = async (msg) => {
+                try {
+                    // Display the user message first
+                    const userMessageId = await addMessageToHistory(msg, true);
+                    addMessage(msg, true, userMessageId);
+                    
+                    // Process through the calendar endpoint directly
+                    const response = await fetch('http://127.0.0.1:5001/calendar/natural', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: msg,
+                            chat_id: currentChatId,
+                            selected_model: modelSelect.value
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    console.log("Calendar processing result:", data);
+                    
+                    // Add the assistant's response to the chat
+                    const assistantMessage = data.message || "I couldn't process that calendar request. Could you try again with more details?";
+                    addMessage(assistantMessage, false, data.assistant_message_id);
+                    
+                    return {
+                        success: data.success === true,
+                        message_ids: {
+                            user_id: data.user_message_id,
+                            assistant_id: data.assistant_message_id
+                        }
+                    };
+                } catch (error) {
+                    console.error('Error processing calendar command:', error);
+                    addMessage('Sorry, there was an error processing your calendar request.', false, null);
+                    return { success: false };
                 }
-                if (data.chat_title) {
-                    updateChatTitle(currentChatId, data.chat_title);
+            };
+            
+            // Helper function to store a message in the database
+            const addMessageToHistory = async (content, isUser) => {
+                if (!currentChatId) return null;
+                
+                try {
+                    const response = await fetch('http://127.0.0.1:5001/add_message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: currentChatId,
+                            content: content,
+                            is_user: isUser
+                        })
+                    });
+                    const data = await response.json();
+                    return data.message_id;
+                } catch (error) {
+                    console.error('Error adding message to history:', error);
+                    return null;
+                }
+            };
+            
+            try {
+                // Check if this is a calendar-related command
+                // First, test with the more specific detection from calendarModule
+                const isCalCommand = window.calendarModule && 
+                                    window.calendarModule.isCalendarCommand && 
+                                    window.calendarModule.isCalendarCommand(message);
+                                    
+                // Add Russian calendar keywords
+                const russianCalendarKeywords = [
+                    'календарь', 'встреча', 'событие', 'создай', 'добавь', 'удали', 'назначь',
+                    'запланируй', 'перенеси', 'напомни', 'покажи', 'список', 'когда', 'расписание'
+                ];
+                
+                // Additional keywords that might indicate calendar requests
+                const additionalCalendarKeywords = [
+                    'when', 'schedule', 'free time', 'busy', 'remind', 'appointment', 'book',
+                    'reserve', 'cancel', 'postpone', 'reschedule', 'block'
+                ];
+                
+                // Second, check for Russian keywords
+                const lowerMessage = message.toLowerCase();
+                const hasRussianKeywords = russianCalendarKeywords.some(keyword => 
+                    lowerMessage.includes(keyword));
+                
+                // Third, check for additional general keywords
+                const hasAdditionalKeywords = additionalCalendarKeywords.some(keyword => 
+                    lowerMessage.includes(keyword));
+                
+                // If this is ANY type of calendar command
+                if (isCalCommand || hasRussianKeywords || hasAdditionalKeywords) {
+                    // Process the message through the calendar system
+                    await processAsCalendarCommand(message);
+                } else {
+                    // Standard chat processing
+                    const useDeepSearch = document.getElementById('use-deep-search').checked;
+                    const useRag = document.getElementById('use-rag').checked;
+                    const selectedModel = modelSelect.value;
+                    
+                    const response = await fetch('http://127.0.0.1:5001/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: message,
+                            chat_id: currentChatId,
+                            use_deep_search: useDeepSearch,
+                            use_rag: useRag,
+                            selected_model: selectedModel,
+                            system_prompt: systemPrompt
+                        }),
+                    });
+                    const data = await response.json();
+                    addMessage(message, true, data.user_message_id);
+                    addMessage(data.response, false, data.assistant_message_id);
+                    if (data.chat_id) {
+                        currentChatId = data.chat_id;
+                        await updateChatHistory();
+                    }
+                    if (data.chat_title) {
+                        updateChatTitle(currentChatId, data.chat_title);
+                    }
                 }
             } catch (error) {
                 console.error('Error:', error);
                 addMessage('Sorry, there was an error processing your request.', false, null);
             } finally {
                 loadingIndicator.remove();
-                userInput.value = '';
                 isProcessing = false;
                 sendButton.disabled = false;
             }
@@ -635,8 +2430,12 @@
         async function uploadFile(file) {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('chat_id', currentChatId);
-            
+            if (currentChatId) {
+                formData.append('chat_id', currentChatId);
+            }
+            formData.append('selected_model', modelSelect.value);
+            formData.append('system_prompt', systemPrompt);
+
             let filePreview;
             if (file.type.startsWith('image/')) {
                 filePreview = await createImagePreview(file);
@@ -657,16 +2456,17 @@
             chatContainer.appendChild(loadingIndicator);
             
             try {
-                const response = await fetch('http://127.0.0.1:5000/upload', {
+                const response = await fetch('http://127.0.0.1:5001/upload', {
                     method: 'POST',
                     body: formData
                 });
                 const data = await response.json();
                 if (data.error) {
+                    console.error('Server error:', data.error);
                     addMessage(`Error: ${data.error}`, false, null);
                 } else {
                     addMessage(`File content:\n\n${data.file_content}`, true, data.user_message_id);
-                    addMessage(data.llm_comment, false, data.assistant_message_id);
+                    addMessage(data.response, false, data.assistant_message_id);
                     if (data.chat_id) {
                         currentChatId = data.chat_id;
                         await updateChatHistory();
@@ -676,7 +2476,7 @@
                     }
                 }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Upload error:', error);
                 addMessage('Sorry, there was an error uploading your file.', false, null);
             } finally {
                 loadingIndicator.remove();
@@ -764,7 +2564,7 @@
         
         async function updateChatHistory() {
             try {
-                const response = await fetch('http://127.0.0.1:5000/chat_history');
+                const response = await fetch('http://127.0.0.1:5001/chat_history');
                 const data = await response.json();
                 chatHistoryList.innerHTML = '';
                 data.chats.forEach(chat => {
@@ -807,9 +2607,9 @@
                     };
                     
                     chatItem.appendChild(pinButton);
-                    chatItem.appendChild(deleteButton);
-                    chatItem.appendChild(chatTitle);
                     chatItem.appendChild(renameButton);
+                    chatItem.appendChild(chatTitle);
+                    chatItem.appendChild(deleteButton);
                     chatHistoryList.appendChild(chatItem);
                 });
                 
@@ -828,7 +2628,7 @@
         async function deleteChat(chatId) {
             if (confirm('Are you sure you want to delete this chat?')) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:5000/delete_chat/${chatId}`, {
+                    const response = await fetch(`http://127.0.0.1:5001/delete_chat/${chatId}`, {
                         method: 'DELETE',
                     });
                     const data = await response.json();
@@ -848,7 +2648,7 @@
         
         async function updateChatOrder(newOrder) {
             try {
-                const response = await fetch('http://127.0.0.1:5000/reorder_chats', {
+                const response = await fetch('http://127.0.0.1:5001/reorder_chats', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -866,7 +2666,7 @@
         
         async function togglePin(chatId) {
             try {
-                const response = await fetch('http://127.0.0.1:5000/toggle_pin', {
+                const response = await fetch('http://127.0.0.1:5001/toggle_pin', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -888,7 +2688,7 @@
             currentChatId = chatId;
             chatContainer.innerHTML = '';
             try {
-                const response = await fetch(`http://127.0.0.1:5000/chat/${chatId}`);
+                const response = await fetch(`http://127.0.0.1:5001/chat/${chatId}`);
                 const data = await response.json();
                 data.messages.forEach(msg => {
                     addMessage(msg.content, msg.is_user, msg.id);
@@ -923,30 +2723,40 @@
         decreaseFontButton.addEventListener('click', () => changeFontSize(-2));
         increaseFontButton.addEventListener('click', () => changeFontSize(2));
         
-        settingsButton.onclick = function() {
-            settingsModal.style.display = "block";
-        }
-        
-        closeButton.onclick = function() {
-            settingsModal.style.display = "none";
-        }
-        
-        window.onclick = function(event) {
-            if (event.target == settingsModal) {
-                settingsModal.style.display = "none";
-            }
-        }
-        
         saveSettingsButton.onclick = async function() {
             llmModel = llmModelInput.value;
             imageRecognitionModel = imageRecognitionModelInput.value;
             systemPrompt = systemPromptInput.value;
+            
+            // Get Google Calendar settings
+            const googleApiKey = document.getElementById('google-api-key').value;
+            const googleClientId = document.getElementById('google-client-id').value;
+            const googleClientSecret = document.getElementById('google-client-secret').value;
+            
             localStorage.setItem('llmModel', llmModel);
             localStorage.setItem('imageRecognitionModel', imageRecognitionModel);
             localStorage.setItem('systemPrompt', systemPrompt);
             
+            // Update the model dropdown to include the new model if it doesn't exist
+            let modelExists = false;
+            for (let i = 0; i < modelSelect.options.length; i++) {
+                if (modelSelect.options[i].value === llmModel) {
+                    modelExists = true;
+                    modelSelect.selectedIndex = i;
+                    break;
+                }
+            }
+            
+            if (!modelExists) {
+                const option = document.createElement('option');
+                option.value = llmModel;
+                option.textContent = llmModel;
+                option.selected = true;
+                modelSelect.appendChild(option);
+            }
+            
             try {
-                const response = await fetch('http://127.0.0.1:5000/update_settings', {
+                const response = await fetch('http://127.0.0.1:5001/update_settings', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -954,7 +2764,10 @@
                     body: JSON.stringify({ 
                         image_model: imageRecognitionModel,
                         llm_model: llmModel,
-                        system_prompt: systemPrompt
+                        system_prompt: systemPrompt,
+                        google_api_key: googleApiKey,
+                        google_client_id: googleClientId,
+                        google_client_secret: googleClientSecret
                     }),
                 });
                 const data = await response.json();
@@ -967,8 +2780,24 @@
                 console.error('Error updating settings:', error);
                 alert('Error updating settings');
             }
-            settingsModal.style.display = "none";
         }
+        
+        resetSystemPromptButton.onclick = async function() {
+            try {
+                const response = await fetch('http://127.0.0.1:5001/get_settings');
+                const data = await response.json();
+                
+                if (data.success) {
+                    systemPrompt = data.system_prompt;
+                    systemPromptInput.value = systemPrompt;
+                    localStorage.setItem('systemPrompt', systemPrompt);
+                    alert('System prompt reset to server default');
+                }
+            } catch (error) {
+                console.error('Error resetting system prompt:', error);
+                alert('Error resetting system prompt');
+            }
+        };
         
         fileUpload.addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -989,6 +2818,243 @@
         
         // Initial setup
         updateChatHistory();
+
+        // RAG functionality
+        const sidebarTabs = document.querySelectorAll('.sidebar-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const useRagCheckbox = document.getElementById('use-rag');
+        const ragStatus = document.getElementById('rag-status');
+        const ragDocumentUpload = document.getElementById('rag-document-upload');
+        const ragDocumentList = document.getElementById('rag-document-list');
+        
+        // Tab switching
+        sidebarTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and contents
+                sidebarTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Load documents when switching to documents tab
+                if (tabId === 'documents') {
+                    loadDocuments();
+                }
+                
+                // Render calendar when switching to calendar tab
+                if (tabId === 'calendar' && window.calendarModule) {
+                    window.calendarModule.renderCalendar();
+                    window.calendarModule.renderUpcomingEvents();
+                }
+            });
+        });
+        
+        // Load documents
+        async function loadDocuments() {
+            try {
+                // Показываем состояние загрузки
+                ragDocumentList.innerHTML = '<p>Loading documents...</p>';
+                
+                const response = await fetch(`http://127.0.0.1:5001/rag/documents${currentChatId ? `?chat_id=${currentChatId}` : ''}`);
+                const data = await response.json();
+                
+                ragDocumentList.innerHTML = '';
+                
+                if (data.documents && data.documents.length > 0) {
+                    const ul = document.createElement('ul');
+                    ul.className = 'document-list';
+                    
+                    data.documents.forEach(doc => {
+                        const li = document.createElement('li');
+                        li.className = 'document-item';
+                        li.dataset.docId = doc.id; // Добавляем id документа как атрибут для лучшей идентификации
+                        li.innerHTML = `
+                            <span class="doc-name" title="${doc.filename}">${doc.filename}</span>
+                            <span class="doc-chunks">${doc.chunks} chunks</span>
+                            <button class="delete-doc-btn" onclick="deleteDocument('${doc.id}')">✖</button>
+                        `;
+                        ul.appendChild(li);
+                    });
+                    
+                    ragDocumentList.appendChild(ul);
+                } else {
+                    ragDocumentList.innerHTML = '<p>No uploaded documents</p>';
+                }
+            } catch (error) {
+                console.error('Error loading documents:', error);
+                ragDocumentList.innerHTML = '<p>Error loading documents. <a href="#" onclick="loadDocuments(); return false;">Try again</a></p>';
+            }
+        }
+        
+        // Delete document
+        window.deleteDocument = async function(docId) {
+            if (confirm('Are you sure you want to delete this document? This action cannot be undone.')) {
+                try {
+                    const response = await fetch(`http://127.0.0.1:5001/rag/documents/${docId}`, {
+                        method: 'DELETE'
+                    });
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        loadDocuments();
+                    } else {
+                        alert('Error deleting document: ' + (data.error || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error deleting document:', error);
+                    alert('Error deleting document');
+                }
+            }
+        }
+        
+        // Upload document for RAG
+        ragDocumentUpload.addEventListener('click', async function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.txt,.pdf,.docx,.md,.csv,.xlsx,.xls';
+            
+            input.onchange = async function(e) {
+                if (!e.target.files.length) return;
+                
+                const file = e.target.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+                if (currentChatId) {
+                    formData.append('chat_id', currentChatId);
+                }
+                formData.append('system_prompt', systemPrompt);
+                
+                ragDocumentList.innerHTML = '<p>Processing document, please wait...</p>';
+                
+                try {
+                    const response = await fetch('http://127.0.0.1:5001/rag/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        ragDocumentList.innerHTML = `<p>Document uploaded successfully: ${data.message}</p>`;
+                        
+                        // Wait a moment to ensure server has processed the document
+                        setTimeout(() => {
+                            loadDocuments();
+                        }, 500);
+                        
+                        // If we're in a chat, let the model respond
+                        if (currentChatId) {
+                            const modelResponse = await fetch('http://127.0.0.1:5001/chat', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    message: `I just uploaded document "${file.name}". Here's its content: ${data.content.substring(0, 300)}...`,
+                                    chat_id: currentChatId,
+                                    selected_model: modelSelect.value,
+                                    system_prompt: systemPrompt
+                                })
+                            });
+                            
+                            const responseData = await modelResponse.json();
+                            addMessage(`Document uploaded: ${file.name}`, true, responseData.user_message_id);
+                            addMessage(responseData.response, false, responseData.assistant_message_id);
+                        }
+                    } else {
+                        ragDocumentList.innerHTML = `<p>Error uploading document: ${data.error || 'Unknown error'}</p>`;
+                    }
+                } catch (error) {
+                    console.error('Error uploading document:', error);
+                    ragDocumentList.innerHTML = '<p>Error uploading document</p>';
+                }
+            };
+            
+            input.click();
+        });
+        
+        // RAG status update
+        useRagCheckbox.addEventListener('change', function() {
+            updateRagStatus();
+        });
+        
+        function updateRagStatus() {
+            if (useRagCheckbox.checked) {
+                ragStatus.textContent = 'Activated';
+                ragStatus.style.color = '#4CAF50';
+            } else {
+                ragStatus.textContent = 'Deactivated';
+                ragStatus.style.color = '#F44336';
+            }
+        }
+        
+        // Search documents
+        async function searchDocuments(query) {
+            try {
+                const response = await fetch('http://127.0.0.1:5001/rag/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        chat_id: currentChatId,
+                        limit: 5
+                    }),
+                });
+                
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error searching documents:', error);
+                return { results: [] };
+            }
+        }
+        
+        // Update RAG status on page load
+        updateRagStatus();
+        
+        // Инициализация: загружаем документы при запуске страницы
+        setTimeout(loadDocuments, 1000);
+        
+        // Устанавливаем интервал для периодической проверки документов
+        setInterval(loadDocuments, 30000); // Обновляем каждые 30 секунд
+        
+        // Calendar-specific processing for chat commands
+        async function processCalendarMessage(message) {
+            try {
+                // Send to server for processing
+                const response = await fetch('http://127.0.0.1:5001/calendar/natural', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Add the result to chat
+                    addMessage(message, true, null);
+                    addMessage(data.message, false, null);
+                    
+                    // Update calendar
+                    if (window.calendarModule) {
+                        window.calendarModule.renderCalendar();
+                        window.calendarModule.renderUpcomingEvents();
+                    }
+                    
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error processing calendar message:', error);
+                return false;
+            }
+        }
     </script>
 </body>
 </html>

@@ -1,31 +1,58 @@
-# Database
+# Database files
+*.db
+db/
 assistant.db
+memory_db/
+vector_db/
+
+# Uploads and cache
+uploads/
+cache/
+temp_audio/
+.perplex_cache/
+.research_cache/
+.universal_research_cache/
+.qodo/
 
 # Sensitive information
+.env
 client_secret.json
 
 # Python virtual environment
+venv/
 .venv/
+env/
+ENV/
 
 # Python cache files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+.pytest_cache/
+*.so
+.coverage
+htmlcov/
 
 # OS generated files
 .DS_Store
 Thumbs.db
+.directory
+desktop.ini
 
-# IDE specific files (если вы используете какую-либо IDE)
+# IDE specific files
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 
-# Logs
+# Logs and temporary files
 *.log
-
-# Временные файлы
 *.tmp
+.ipynb_checkpoints/
 
-# Файлы с локальными настройками (если такие есть)
-local_settings.py
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
