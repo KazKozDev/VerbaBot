@@ -43,7 +43,7 @@ git clone https://github.com/KazKozDev/VerbaBot.git
 cd VerbaBot
 
 # Create a virtual environment
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 ```bash
 # Start the server
-python server.py
+python3 server.py
 ```
 
 The web interface will be available at file:///.../VerbaBot/wavy-animation.html
