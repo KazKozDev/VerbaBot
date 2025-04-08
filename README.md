@@ -13,7 +13,7 @@
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
 <p align="center">Local Control. Global Capabilities.</p>
 
-VerbaBot is a comprehensive AI assistant designed to run locally, ensuring complete privacy of your data. By integrating powerful language models with a sophisticated Retrieval-Augmented Generation (RAG) pipeline, VerbaBot offers intelligent conversations, information retrieval, and personal knowledge management - all within a user-friendly web interface.
+VerbaBot is a comprehensive AI assistant designed to run locally, ensuring complete privacy of your data. By integrating language models with a sophisticated Retrieval-Augmented Generation (RAG) pipeline, VerbaBot offers intelligent conversations, information retrieval, and personal knowledge management - all within a user-friendly web interface.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e20930d6-f29f-47f7-a8a0-39fefbdb3538" alt="VerbaBot Demo">
