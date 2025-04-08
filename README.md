@@ -105,9 +105,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-[MIT](LICENSE) 
+License - [MIT](LICENSE) 
 
 ---
 If you like this project, please give it a star ⭐
