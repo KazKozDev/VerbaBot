@@ -108,3 +108,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 [MIT](LICENSE) 
+
+---
+If you like this project, please give it a star ⭐
+
+For questions, feedback, or support, reach out to:
+
+[Artem KK](https://www.linkedin.com/in/kazkozdev/) | [Issue Tracker](https://github.com/KazKozDev/VerbaBot/issues) 
