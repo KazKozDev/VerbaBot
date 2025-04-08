@@ -39,7 +39,7 @@ VerbaBot consists of several integrated components:
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/VerbaBot.git
+git clone https://github.com/KazKozDev/VerbaBot.git
 cd VerbaBot
 
 # Create a virtual environment
