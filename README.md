@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://github.com/user-attachments/assets/63bc3058-bace-4234-a473-7d92e6bd1c84" alt="VerbaBot Logo">
 </div>
-<h1 align="center">VerbaBot</h1>
+<h2 align="center">VerbaBot</h2>
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
 <p align="center">Local Control. Global Capabilities.</p>
 
@@ -64,20 +64,11 @@ The web interface will be available at file:///.../VerbaBot/wavy-animation.html
 
 ### Configuration
 
-### Models
-
 VerbaBot uses local Ollama models. Default models:
 - Main LLM: `gemma3:12b`
 - Image Recognition: `gemma3:12b`
 
 You can change these in the settings menu or directly in the server.py file.
-
-### Optional Features
-
-To enable voice input capability:
-1. Uncomment the corresponding dependencies in the `requirements.txt` file
-2. Install them with `pip install -r requirements.txt`
-3. Ensure you have the required audio libraries for your system
 
 ### Environment Variables
 
