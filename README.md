@@ -60,7 +60,7 @@ pip install -r requirements.txt
 python server.py
 ```
 
-The web interface will be available at http://localhost:5001/
+The web interface will be available at file:///.../Verba/chat.html
 
 ## Configuration
 
