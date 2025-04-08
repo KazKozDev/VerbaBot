@@ -60,7 +60,7 @@ pip install -r requirements.txt
 python server.py
 ```
 
-The web interface will be available at file:///.../Verba/wavy-animation.html
+The web interface will be available at file:///.../VerbaBot/wavy-animation.html
 
 ## Configuration
 
