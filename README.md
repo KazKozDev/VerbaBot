@@ -2,20 +2,24 @@
   <img src="https://github.com/user-attachments/assets/63bc3058-bace-4234-a473-7d92e6bd1c84" alt="VerbaBot Logo">
 </div>
 <h2 align="center">VerbaBot</h2>
-[![Build Status](https://img.shields.io/github/actions/workflow/status/KazKozDev/VerbaBot/main.yml?branch=main)](https://github.com/KazKozDev/VerbaBot/actions)
-[![Version](https://img.shields.io/github/v/release/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/releases)
-[![License](https://img.shields.io/github/license/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE)
-[![Python](https://img.shields.io/badge/Python-45.3%25-blue)](https://www.python.org/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-24.5%25-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![HTML](https://img.shields.io/badge/HTML-23.1%25-orange)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![Shell](https://img.shields.io/badge/Shell-7.1%25-lightgrey)](https://www.gnu.org/software/bash/)
-[![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen)](https://github.com/KazKozDev/VerbaBot)
-[![Dependencies](https://img.shields.io/librariesio/github/KazKozDev/VerbaBot)](https://libraries.io/github/KazKozDev/VerbaBot)
-[![GitHub Stars](https://img.shields.io/github/stars/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/commits/main)
-[![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](https://github.com/KazKozDev/VerbaBot)
-[![Sponsor](https://img.shields.io/badge/Sponsor-Support%20this%20project-blue)](https://github.com/sponsors/KazKozDev)
+
+<p align="center">
+  <a href="https://github.com/KazKozDev/VerbaBot/actions"><img src="https://img.shields.io/github/actions/workflow/status/KazKozDev/VerbaBot/main.yml?branch=main" alt="Build Status"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot/releases"><img src="https://img.shields.io/github/v/release/KazKozDev/VerbaBot" alt="Version"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KazKozDev/VerbaBot" alt="License"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-45.3%25-blue" alt="Python"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-24.5%25-yellow" alt="JavaScript"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://img.shields.io/badge/HTML-23.1%25-orange" alt="HTML"></a>
+  <a href="https://www.gnu.org/software/bash/"><img src="https://img.shields.io/badge/Shell-7.1%25-lightgrey" alt="Shell"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot"><img src="https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen" alt="Platforms"></a>
+  <a href="https://libraries.io/github/KazKozDev/VerbaBot"><img src="https://img.shields.io/librariesio/github/KazKozDev/VerbaBot" alt="Dependencies"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot/stargazers"><img src="https://img.shields.io/github/stars/KazKozDev/VerbaBot" alt="GitHub Stars"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot/issues"><img src="https://img.shields.io/github/issues/KazKozDev/VerbaBot" alt="GitHub Issues"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot/commits/main"><img src="https://img.shields.io/github/last-commit/KazKozDev/VerbaBot" alt="Last Commit"></a>
+  <a href="https://github.com/KazKozDev/VerbaBot"><img src="https://img.shields.io/badge/Documentation-Complete-brightgreen" alt="Documentation"></a>
+  <a href="https://github.com/sponsors/KazKozDev"><img src="https://img.shields.io/badge/Sponsor-Support%20this%20project-blue" alt="Sponsor"></a>
+</p>
+
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
 <p align="center">Local Control. Global Capabilities.</p>
 
