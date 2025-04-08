@@ -2,6 +2,20 @@
   <img src="https://github.com/user-attachments/assets/63bc3058-bace-4234-a473-7d92e6bd1c84" alt="VerbaBot Logo">
 </div>
 <h2 align="center">VerbaBot</h2>
+[![Build Status](https://img.shields.io/github/actions/workflow/status/KazKozDev/VerbaBot/main.yml?branch=main)](https://github.com/KazKozDev/VerbaBot/actions)
+[![Version](https://img.shields.io/github/v/release/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/releases)
+[![License](https://img.shields.io/github/license/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE)
+[![Python](https://img.shields.io/badge/Python-45.3%25-blue)](https://www.python.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-24.5%25-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML](https://img.shields.io/badge/HTML-23.1%25-orange)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![Shell](https://img.shields.io/badge/Shell-7.1%25-lightgrey)](https://www.gnu.org/software/bash/)
+[![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen)](https://github.com/KazKozDev/VerbaBot)
+[![Dependencies](https://img.shields.io/librariesio/github/KazKozDev/VerbaBot)](https://libraries.io/github/KazKozDev/VerbaBot)
+[![GitHub Stars](https://img.shields.io/github/stars/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/KazKozDev/VerbaBot)](https://github.com/KazKozDev/VerbaBot/commits/main)
+[![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](https://github.com/KazKozDev/VerbaBot)
+[![Sponsor](https://img.shields.io/badge/Sponsor-Support%20this%20project-blue)](https://github.com/sponsors/KazKozDev)
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
 <p align="center">Local Control. Global Capabilities.</p>
 
