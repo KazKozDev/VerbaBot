@@ -4,8 +4,6 @@
 <h2 align="center">VerbaBot</h2>
 
 <p align="center">
-  <a href="https://github.com/KazKozDev/VerbaBot/actions"><img src="https://img.shields.io/github/actions/workflow/status/KazKozDev/VerbaBot/main.yml?branch=main" alt="Build Status"></a>
-  <a href="https://github.com/KazKozDev/VerbaBot/releases"><img src="https://img.shields.io/github/v/release/KazKozDev/VerbaBot" alt="Version"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KazKozDev/VerbaBot" alt="License"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-45.3%25-blue" alt="Python"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-24.5%25-yellow" alt="JavaScript"></a>
