@@ -47,6 +47,9 @@ pytesseract==0.3.10
 Pillow==9.5.0
 
 # Web scraping and search
+newspaper3k==0.2.8
+lxml_html_clean==0.4.1
+readability-lxml==0.8.1
 beautifulsoup4==4.12.2
 duckduckgo-search==2.8.6
 lxml==5.3.1
