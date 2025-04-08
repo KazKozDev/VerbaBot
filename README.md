@@ -23,7 +23,7 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
 ### Features
 
 - **Modern Web Interface**: Clean, responsive UI for seamless interaction with the assistant
-- **Calendar Integration**: Manage your schedule through natural language - create events, set reminders, and organize meetings
+- **Calendar Integration**: Manage your schedule through natural language
 - **Personal Memory System**: The assistant remembers important personal information across conversations
 - **Advanced RAG Pipeline**: Process and understand documents in multiple formats (PDF, DOCX, TXT, CSV, etc.)
 - **Internet Access**: Retrieve real-time information using DuckDuckGo search and deep web exploration
