@@ -11,7 +11,7 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
   <img src="https://github.com/user-attachments/assets/e20930d6-f29f-47f7-a8a0-39fefbdb3538" alt="VerbaBot Demo">
 </div>
 
-## Key Features
+### Key Features
 
 - **Modern Web Interface**: Clean, responsive UI for seamless interaction with the assistant
 - **Calendar Integration**: Manage your schedule through natural language - create events, set reminders, and organize meetings
@@ -25,7 +25,7 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
 
 ![VerbaBot Interface](https://github.com/user-attachments/assets/c8c5e8b6-2cb1-48d1-94c1-13bac9759e12)
 
-## Architecture
+### Architecture
 
 VerbaBot consists of several integrated components:
 
@@ -35,7 +35,7 @@ VerbaBot consists of several integrated components:
 - **Calendar System**: Natural language calendar management
 - **Web Interface**: Responsive UI for interacting with the assistant
 
-## Installation
+### Installation
 
 ```bash
 # Clone the repository
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 # Visit https://ollama.ai/ to install if needed
 ```
 
-## Usage
+### Usage
 
 ```bash
 # Start the server
@@ -62,7 +62,7 @@ python3 server.py
 
 The web interface will be available at file:///.../VerbaBot/wavy-animation.html
 
-## Configuration
+### Configuration
 
 ### Models
 
@@ -90,7 +90,7 @@ GOOGLE_CLIENT_ID=your_client_id
 GOOGLE_CLIENT_SECRET=your_client_secret
 ```
 
-## Project Structure
+### Project Structure
 
 - `server.py` - Main server application
 - `memory.py` - Personal memory system
@@ -101,7 +101,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 - `voice_input.py` - Voice input processing
 - `requirements.txt` - Project dependencies
 
-## Contributing
+### Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
