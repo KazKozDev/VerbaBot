@@ -11,7 +11,7 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
   <img src="https://github.com/user-attachments/assets/e20930d6-f29f-47f7-a8a0-39fefbdb3538" alt="VerbaBot Demo">
 </div>
 
-### Key Features
+### Features
 
 - **Modern Web Interface**: Clean, responsive UI for seamless interaction with the assistant
 - **Calendar Integration**: Manage your schedule through natural language - create events, set reminders, and organize meetings
