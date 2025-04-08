@@ -19,7 +19,7 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
 - **Advanced RAG Pipeline**: Process and understand documents in multiple formats (PDF, DOCX, TXT, CSV, etc.)
 - **Internet Access**: Retrieve real-time information using DuckDuckGo search and deep web exploration
 - **Model Selection**: Switch between different Ollama models in real-time to optimize for specific tasks
-- **Voice Input Capability**: Speak directly to your assistant (optional feature)
+- **Voice Input Capability**: Speak directly to your assistant (in development)
 - **Image Analysis**: Analyze and describe images through multimodal models
 - **Complete Privacy**: All data processing happens locally on your device
 
