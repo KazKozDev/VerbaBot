@@ -4,7 +4,6 @@
 <h2 align="center">VerbaBot</h2>
 
 <p align="center">
-  <a href="https://github.com/KazKozDev/VerbaBot/stargazers"><img src="https://img.shields.io/github/stars/KazKozDev/VerbaBot" alt="GitHub Stars"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KazKozDev/VerbaBot" alt="License"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/issues"><img src="https://img.shields.io/github/issues/KazKozDev/VerbaBot" alt="GitHub Issues"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/commits/main"><img src="https://img.shields.io/github/last-commit/KazKozDev/VerbaBot" alt="Last Commit"></a>
