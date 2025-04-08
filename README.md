@@ -88,11 +88,6 @@ Create a `.env` file in the root directory with these optional settings:
 GOOGLE_API_KEY=your_api_key
 GOOGLE_CLIENT_ID=your_client_id
 GOOGLE_CLIENT_SECRET=your_client_secret
-
-# Gmail API (optional)
-GMAIL_API_KEY=your_api_key
-GMAIL_CLIENT_ID=your_client_id
-GMAIL_CLIENT_SECRET=your_client_secret
 ```
 
 ## Project Structure
