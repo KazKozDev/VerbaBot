@@ -5,10 +5,6 @@
 
 <p align="center">
   <a href="https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KazKozDev/VerbaBot" alt="License"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-45.3%25-blue" alt="Python"></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-24.5%25-yellow" alt="JavaScript"></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://img.shields.io/badge/HTML-23.1%25-orange" alt="HTML"></a>
-  <a href="https://www.gnu.org/software/bash/"><img src="https://img.shields.io/badge/Shell-7.1%25-lightgrey" alt="Shell"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/stargazers"><img src="https://img.shields.io/github/stars/KazKozDev/VerbaBot" alt="GitHub Stars"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/issues"><img src="https://img.shields.io/github/issues/KazKozDev/VerbaBot" alt="GitHub Issues"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/commits/main"><img src="https://img.shields.io/github/last-commit/KazKozDev/VerbaBot" alt="Last Commit"></a>
