@@ -7,7 +7,6 @@
   <a href="https://github.com/KazKozDev/VerbaBot/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KazKozDev/VerbaBot" alt="License"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/issues"><img src="https://img.shields.io/github/issues/KazKozDev/VerbaBot" alt="GitHub Issues"></a>
   <a href="https://github.com/KazKozDev/VerbaBot/commits/main"><img src="https://img.shields.io/github/last-commit/KazKozDev/VerbaBot" alt="Last Commit"></a>
-  <a href="https://github.com/sponsors/KazKozDev"><img src="https://img.shields.io/badge/Sponsor-Support%20this%20project-blue" alt="Sponsor"></a>
 </p>
 
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
