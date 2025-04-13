@@ -12,7 +12,7 @@
 <p align="center">A powerful multimodal LLM assistant with advanced RAG.</p>
 <p align="center">Local Control. Global Capabilities.</p>
 
-VerbaBot is a comprehensive AI assistant designed to run locally, ensuring complete privacy of your data. By integrating language models with a sophisticated Retrieval-Augmented Generation (RAG) pipeline, VerbaBot offers intelligent conversations, information retrieval, and personal knowledge management - all within a user-friendly web interface.
+VerbaBot is an AI assistant designed to run locally, ensuring complete privacy of your data. By integrating language models with a Retrieval-Augmented Generation (RAG) pipeline, the chatbot offers intelligent conversations, information retrieval, and personal knowledge management - all within a user-friendly web interface.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e20930d6-f29f-47f7-a8a0-39fefbdb3538" alt="VerbaBot Demo">
@@ -20,14 +20,12 @@ VerbaBot is a comprehensive AI assistant designed to run locally, ensuring compl
 
 ### Features
 
-- **Modern Web Interface**: Clean, responsive UI for seamless interaction with the assistant
 - **Calendar Integration**: Manage your schedule through natural language
 - **Personal Memory System**: The assistant remembers important personal information across conversations
 - **Advanced RAG Pipeline**: Process and understand documents in multiple formats (PDF, DOCX, TXT, CSV, etc.)
+- **Image Analysis**: Analyze and describe images
 - **Internet Access**: Retrieve real-time information using DuckDuckGo search and deep web exploration
 - **Model Selection**: Switch between different Ollama models in real-time to optimize for specific tasks
-- **Voice Input Capability**: Speak directly to your assistant (in development)
-- **Image Analysis**: Analyze and describe images through multimodal models
 - **Complete Privacy**: All data processing happens locally on your device
 
 ![VerbaBot Interface](https://github.com/user-attachments/assets/c8c5e8b6-2cb1-48d1-94c1-13bac9759e12)
